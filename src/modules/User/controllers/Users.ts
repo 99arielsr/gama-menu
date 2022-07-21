@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Images from "../../../models/Images";
 import User from "../../../models/Users";
+
 const controller = {
   async create(req: Request, res: Response) {
     const { name, email, senha, occupation, state } = req.body;

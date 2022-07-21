@@ -1,11 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IUser } from "./Users";
-
-export interface IImages {
-  link: string;
-  nome: string;
-  user: Schema.Types.ObjectId | IUser;
-}
+import IImages from "../repositories/Images/IImages";
 
 const imagesSchema = new Schema<IImages>(
   {
