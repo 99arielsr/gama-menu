@@ -1,4 +1,3 @@
-import { Schema, model } from "mongoose";
 import IRepository from "../IRepository";
 import IEstabelecimento from "./IEstabelecimento";
 import IEdereco from "../Endereco/IEndereco";
@@ -13,7 +12,8 @@ export default class EstabelecimentoRepository implements IRepository {
   }
   async create(
     payload: { 
-      name: string; 
+      name: string;
+      segmento: string;
       logo: IImages[]; 
       endereco: IEdereco[]; 
       ativo: boolean; 

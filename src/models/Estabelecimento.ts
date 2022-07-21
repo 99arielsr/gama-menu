@@ -5,6 +5,9 @@ const estabelecimentoSchema = new Schema <IEstabelecimento> ({
     name: {
         type: Schema.Types.String,
     },
+    segmento: {
+        type: Schema.Types.String,
+    },
     logo: [
         {
           type: Schema.Types.ObjectId,
