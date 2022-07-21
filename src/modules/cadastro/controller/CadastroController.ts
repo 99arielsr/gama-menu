@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Images from "../../../models/Images";
+import CadastroUseCase from "../useCases/CadastroUseCase";
 import Estabelecimento from "../../../models/Estabelecimento";
 
 const controller = {
