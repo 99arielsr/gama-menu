@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
-import IEstabelecimento from "../Estabelecimento/";
+import IEstabelecimento from "../Estabelecimento";
 
-export default interface IPropietario {
+export default interface IProprietario {
   name: string;
   email: string;
   senha: string;

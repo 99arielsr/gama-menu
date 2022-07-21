@@ -1,12 +1,12 @@
 import IRepository from "../IRepository";
-import IPropietario from "./IPropietario";
+import IProprietario from "./IProprietario";
 import IEstabelecimento from "../Estabelecimento/IEstabelecimento";
 import { Model } from "mongoose";
 
-export default class PropietarioRepository implements IRepository {
-  private propietarioModel: any;
-  constructor(propietarioModel: Model<IPropietario>) {
-    this.propietarioModel = propietarioModel;
+export default class ProprietarioRepository implements IRepository {
+  private proprietarioModel: any;
+  constructor(proprietarioModel: Model<IProprietario>) {
+    this.proprietarioModel = proprietarioModel;
   }
   async create(
     payload: { 
@@ -16,7 +16,7 @@ export default class PropietarioRepository implements IRepository {
       estabelecimento: IEstabelecimento [];
     }
   ){
-    return this.propietarioModel.create(payload);
+    return this.proprietarioModel.create(payload);
   }
   
   async find(payload?: any) {}

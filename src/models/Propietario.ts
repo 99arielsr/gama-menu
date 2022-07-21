@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import IPropietario from "../repositories/Propietario/IPropietario"
+import IProprietario from "../repositories/Proprietario/IProprietario"
 
-const propietarioSchema = new Schema <IPropietario> ({
+const proprietarioSchema = new Schema <IProprietario> ({
   name: {
         type: Schema.Types.String,
   },
@@ -21,4 +21,4 @@ const propietarioSchema = new Schema <IPropietario> ({
 {timestamps: true}
 );
 
-export default model <IPropietario>("Propietario", propietarioSchema);
+export default model <IProprietario>("Proprietario", proprietarioSchema);
