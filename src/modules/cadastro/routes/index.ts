@@ -3,6 +3,6 @@ import { cadastroController } from "../controller";
 
 const routes = Router();
 
-routes.post("/", cadastroController.create);
+routes.post("/cadastro", cadastroController.create());
 
 export default routes;

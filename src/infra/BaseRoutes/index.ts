@@ -3,6 +3,6 @@ import routesCadastro from "../../modules/Cadastro/routes"
 
 const routes = Router();
 
-routes.use("/cadastro", routesCadastro);
+routes.use(routesCadastro);
 
 export default routes;
