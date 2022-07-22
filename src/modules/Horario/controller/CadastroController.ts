@@ -27,7 +27,10 @@ export default class CadastroController {
           sabado,
         })
 
+        // const horarioExistente = await Estabelecimento.findById(id).select({horario});
+
         await  Estabelecimento.findByIdAndUpdate( id, {
+          // horarioExistente,
           horario: [horario.id]
         })
 
