@@ -15,18 +15,18 @@ export default class CadastroUseCase {
   constructor(cadastroRepository: IRepository) {
     this.repository = cadastroRepository;
   }
-  cadastroProfissional(payload: PayloadCadastroProprietario, id: any){
+  cadastroProprietario(payload: PayloadCadastroProprietario){
     const proprietarioData = {
-      name: payload.name,
+      nome: payload.nome,
       email: payload.email,
-      senha: payload.senha,
+      senha: payload.senha
     }
-    const novoProprietario = this.repository.update(proprietarioData);
+    const novoProprietario = this.repository.create(proprietarioData);
     return novoProprietario;
   }
   cadastroEstabelecimento(payload: PayloadCadastroEstabelecimento, id: any){
     const estabelecimentoData = {
-      name: payload.name,
+      nome: payload.nome,
       segmento: payload.segmento,
       ativo: payload.ativo,
       delivery: payload.delivery,

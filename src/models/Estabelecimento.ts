@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import IEstabelecimento from "../repositories/Estabelecimento/IEstabelecimento"
 
 const estabelecimentoSchema = new Schema <IEstabelecimento> ({
-    name: {
+    nome: {
         type: Schema.Types.String,
     },
     segmento: {
@@ -23,7 +23,7 @@ const estabelecimentoSchema = new Schema <IEstabelecimento> ({
     ativo: {
         type: Schema.Types.Boolean,
     },
-    horario_funcionameno: [
+    horario_funcionamento: [
         {
             type: Schema.Types.ObjectId,
             ref: "Horario",

@@ -1,9 +1,8 @@
 import { Router } from "express";
-
-import userRoutes from "../../modules/User/routes";
+import routesCadastro from "../../modules/Cadastro/routes"
 
 const routes = Router();
 
-routes.use(userRoutes);
+routes.use("/cadastro", routesCadastro);
 
 export default routes;

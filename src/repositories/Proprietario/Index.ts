@@ -10,9 +10,10 @@ export default class ProprietarioRepository implements IRepository {
   }
   async create(
     payload: { 
-      name: string;
+      nome: string;
       email: string;
       senha: string;
+      hashResetSenha: string;
       estabelecimento: IEstabelecimento [];
     }
   ){

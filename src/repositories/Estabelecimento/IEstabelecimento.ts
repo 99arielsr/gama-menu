@@ -4,12 +4,12 @@ import IHorario from "../Horario/IHorario";
 import IImages from "../Images/IImages";
 
 export default interface IEstabelecimento {
-  name: string;
+  nome: string;
   segmento: string;
   logo: Schema.Types.ObjectId | IImages[];
   endereco: Schema.Types.ObjectId[] | IEdereco[];
   ativo: boolean;
-  horario_funcionameno: Schema.Types.ObjectId[] | IHorario[];
+  horario_funcionamento: Schema.Types.ObjectId[] | IHorario[];
   delivery: boolean;
   retirada: boolean;
 }

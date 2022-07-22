@@ -12,12 +12,12 @@ export default class EstabelecimentoRepository implements IRepository {
   }
   async create(
     payload: { 
-      name: string;
+      nome: string;
       segmento: string;
       logo: IImages[]; 
       endereco: IEdereco[]; 
       ativo: boolean; 
-      horario_funcionameno: IHorario []; 
+      horario_funcionamento: IHorario []; 
       delivery: boolean; 
       retirada: boolean;
     }

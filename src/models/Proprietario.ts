@@ -2,13 +2,16 @@ import { Schema, model } from "mongoose";
 import IProprietario from "../repositories/Proprietario/IProprietario"
 
 const proprietarioSchema = new Schema <IProprietario> ({
-  name: {
+  nome: {
         type: Schema.Types.String,
   },
   email: {
       type: Schema.Types.String,
   },
   senha: {
+    type: Schema.Types.String,
+  },
+  hashResetSenha: {
     type: Schema.Types.String,
   },
   estabelecimento: [
