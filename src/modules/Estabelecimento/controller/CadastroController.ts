@@ -33,7 +33,7 @@ export default class CadastroController {
           logo
         })
 
-        await  Proprietario.findByIdAndUpdate( id, {
+        await Proprietario.findByIdAndUpdate( id, {
           estabelecimento: [estabelecimento._id]
         })
 
