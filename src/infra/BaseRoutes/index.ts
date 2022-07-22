@@ -1,8 +1,14 @@
 import { Router } from "express";
-import routesCadastro from "../../modules/Cadastro/routes"
+import routesCadastroProprietario from "../../modules/Cadastro/routes";
+import routesCadastroEstabelecimento from "../../modules/Estabelecimento/routes";
+import routesCadastroEndereco from "../../modules/Endereco/routes"
+import routesCadastroHorario from "../../modules/Horario/routes"
 
 const routes = Router();
 
-routes.use(routesCadastro);
+routes.use(routesCadastroProprietario);
+routes.use(routesCadastroEstabelecimento);
+routes.use(routesCadastroEndereco);
+routes.use(routesCadastroHorario);
 
 export default routes;

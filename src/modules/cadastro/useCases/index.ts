@@ -1,5 +1,5 @@
 import { proprietarioRepository }  from "../../../repositories";
-import CadastroUseCase from "./CadastroUseCase";
+import CadastroUseCase from "./CadastroProprietarioUseCase";
 
 const cadastroUseCase= new CadastroUseCase(proprietarioRepository);
 

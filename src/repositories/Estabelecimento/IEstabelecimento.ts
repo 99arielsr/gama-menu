@@ -7,9 +7,9 @@ export default interface IEstabelecimento {
   nome: string;
   segmento: string;
   logo: Schema.Types.ObjectId | IImages[];
-  endereco: Schema.Types.ObjectId[] | IEdereco[];
+  endereco: Schema.Types.ObjectId | IEdereco[];
   ativo: boolean;
-  horario_funcionamento: Schema.Types.ObjectId[] | IHorario[];
+  horario: Schema.Types.ObjectId | IHorario[];
   delivery: boolean;
   retirada: boolean;
 }

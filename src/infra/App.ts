@@ -1,7 +1,7 @@
 import Express, { Application } from "express";
 import { mongoDBConection } from "../database";
 import path from "path";
-import BaseRoutes from "./BaseRoutes";
+import BaseRoutes from "./BaseRoutes/index";
 
 type SetupOptions = {
   isTest?: boolean;

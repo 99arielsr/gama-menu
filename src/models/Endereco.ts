@@ -3,6 +3,9 @@ import IEndereco from "../repositories/Endereco/IEndereco";
 
 const enderecoSchema = new Schema<IEndereco>(
   {
+    cep: {
+      type: Schema.Types.String,
+    },
     logradouro: {
       type: Schema.Types.String,
     },

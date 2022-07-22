@@ -23,7 +23,7 @@ const estabelecimentoSchema = new Schema <IEstabelecimento> ({
     ativo: {
         type: Schema.Types.Boolean,
     },
-    horario_funcionamento: [
+    horario: [
         {
             type: Schema.Types.ObjectId,
             ref: "Horario",

@@ -3,7 +3,7 @@ import IEstabelecimento from "./IEstabelecimento";
 import IEdereco from "../Endereco/IEndereco";
 import IHorario from "../Horario/IHorario";
 import IImages from "../Images/IImages";
-import { Model } from "mongoose";
+import { Model, Schema } from "mongoose";
 
 export default class EstabelecimentoRepository implements IRepository {
   private estabelecimentoModel: any;
@@ -14,10 +14,10 @@ export default class EstabelecimentoRepository implements IRepository {
     payload: { 
       nome: string;
       segmento: string;
-      logo: IImages[]; 
-      endereco: IEdereco[]; 
+      logo: Schema.Types.ObjectId | IImages[]; 
+      endereco: Schema.Types.ObjectId | IEdereco[]; 
       ativo: boolean; 
-      horario_funcionamento: IHorario []; 
+      horario: Schema.Types.ObjectId | IHorario []; 
       delivery: boolean; 
       retirada: boolean;
     }

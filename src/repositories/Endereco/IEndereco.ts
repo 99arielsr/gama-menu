@@ -1,4 +1,5 @@
 export default interface IEdereco {
+  cep: string
   logradouro: string;
   numero: number;
   complemento: string;

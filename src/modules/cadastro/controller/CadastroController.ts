@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import CadastroUseCase from "../useCases/CadastroUseCase";
+import CadastroUseCase from "../useCases/CadastroProprietarioUseCase";
 import Proprietario from "../../../models/Proprietario";
-import Estabelecimento from "../../../models/Estabelecimento";
 
 export default class CadastroController {
   private useCase: CadastroUseCase;
@@ -13,7 +12,7 @@ export default class CadastroController {
   create() {
     return async (req: Request, res: Response) => {
       try {
-        const { nome, email, senha, hashResetSenha, estabelecimento } =
+        const { nome, email, senha } =
           req.body;
 
         const savedProprietario = await Proprietario.count({
@@ -28,8 +27,6 @@ export default class CadastroController {
           nome,
           email,
           senha,
-          hashResetSenha,
-          estabelecimento,
         });
 
         return res.status(201).json(proprietario);
