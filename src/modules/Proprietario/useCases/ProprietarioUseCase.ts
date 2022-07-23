@@ -6,7 +6,7 @@ type PayloadCadastroProprietario = {
   senha: string,
 };
 
-export default class CadastroUseCase {
+export default class ProprietarioUseCase {
   private repository: IRepository;
   constructor(cadastroRepository: IRepository) {
     this.repository = cadastroRepository;

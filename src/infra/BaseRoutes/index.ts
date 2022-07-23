@@ -1,5 +1,5 @@
 import { Router } from "express";
-import routesCadastroProprietario from "../../modules/Cadastro/routes";
+import routesCadastroProprietario from "../../modules/Proprietario/routes";
 import routesCadastroEstabelecimento from "../../modules/Estabelecimento/routes";
 import routesCadastroEndereco from "../../modules/Endereco/routes"
 import routesCadastroHorario from "../../modules/Horario/routes"
