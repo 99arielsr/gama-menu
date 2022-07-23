@@ -1,6 +1,6 @@
 import IRepository from "../IRepository";
-import IProprietario from "./IProprietario";
-import IEstabelecimento from "../Estabelecimento/IEstabelecimento";
+import { IEstabelecimento } from "../../models/Estabelecimento";
+import { IProprietario } from "../../models/Proprietario";
 import { Model } from "mongoose";
 
 export default class ProprietarioRepository implements IRepository {
@@ -19,10 +19,13 @@ export default class ProprietarioRepository implements IRepository {
   ){
     return this.proprietarioModel.create(payload);
   }
-  
-  async find(payload?: any) {}
   async update(payload: any) {}
-  async findAll(payload?: any) {}
-  async findById(id: any) {}
+
+  async find() {
+    return this.proprietarioModel.find().populate({
+      path: "estabelecimento",
+      select: "nome",
+    });
+  }
   async delete(id: any) {}
 }

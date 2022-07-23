@@ -1,6 +1,6 @@
 import IRepository from "../IRepository";
-import IImages from "./IImages";
 import { Model } from "mongoose";
+import { IImages } from "../../models/Images";
 
 export default class ImageRepository implements IRepository {
   private imageModel: any;
@@ -16,9 +16,11 @@ export default class ImageRepository implements IRepository {
     return this.imageModel.create(payload);
   }
   
-  async find(payload?: any) {}
+  async find() {
+    return this.imageModel.find();
+  }
+
   async update(payload: any) {}
-  async findAll(payload?: any) {}
   async findById(id: any) {}
   async delete(id: any) {}
 }

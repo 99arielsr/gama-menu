@@ -1,8 +1,7 @@
 import IRepository from "../../../repositories/IRepository";
-import { enderecoRepository }  from "../../../repositories";
-import IEdereco from "../../../repositories/Endereco/IEndereco";
+import { IEndereco } from "../../../models/Endereco";
 
-type PayloadCadastroEndereco = IEdereco;
+type PayloadCadastroEndereco = IEndereco;
 
 export default class CadastroUseCase {
   private repository: IRepository;

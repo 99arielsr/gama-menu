@@ -1,5 +1,5 @@
 import { cadastroUseCaseHorario } from "../useCases";
-import CadastroController from "./CadastroController";
+import CadastroController from "./HorarioController";
 
 const cadastroControllerHorario = new CadastroController(cadastroUseCaseHorario);
 

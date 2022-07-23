@@ -20,19 +20,29 @@ export default class ProprietarioController {
         });
 
         if (savedProprietario) {
-          return res.status(400).json("Email já cadastrado no banco");
+          return res.status(400).json("Email já cadastrado no banco.");
         }
 
         const proprietario = await this.useCase.cadastroProprietario({
-          nome,
-          email,
-          senha,
+          ...req.body,
         });
 
         return res.status(201).json(proprietario);
       } catch (error) {
-        return res.status(500).json("ERRO");
+        console.log(error);
+        return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
+  }
+
+  find() {
+    return async (req: Request, res: Response) => {
+      try {
+        const listarTodos = await this.useCase.listarProprietarios();
+        return res.status(200).json(listarTodos);
+      } catch (error) {
+        return res.status(500).json("Ocorreu algum erro, contate o suporte!");
+      }
+    }
   }
 }

@@ -1,9 +1,9 @@
-import IRepository from "../IRepository";
-import IEstabelecimento from "./IEstabelecimento";
-import IEdereco from "../Endereco/IEndereco";
-import IHorario from "../Horario/IHorario";
-import IImages from "../Images/IImages";
 import { Model, Schema } from "mongoose";
+import { IEndereco } from "../../models/Endereco";
+import { IEstabelecimento } from "../../models/Estabelecimento";
+import { IHorario } from "../../models/Horario";
+import { IImages } from "../../models/Images";
+import IRepository from "../IRepository";
 
 export default class EstabelecimentoRepository implements IRepository {
   private estabelecimentoModel: any;
@@ -15,7 +15,7 @@ export default class EstabelecimentoRepository implements IRepository {
       nome: string;
       segmento: string;
       logo: Schema.Types.ObjectId[] | IImages[]; 
-      endereco: Schema.Types.ObjectId[] | IEdereco[]; 
+      endereco: Schema.Types.ObjectId[] | IEndereco[]; 
       ativo: boolean; 
       horario: Schema.Types.ObjectId[] | IHorario []; 
       delivery: boolean; 
@@ -25,9 +25,11 @@ export default class EstabelecimentoRepository implements IRepository {
     return this.estabelecimentoModel.create(payload);
   }
   
-  async find(payload?: any) {}
+  async find() {
+    return this.estabelecimentoModel.find();
+  }
+  
   async update(payload: any) {}
-  async findAll(payload?: any) {}
   async findById(id: any) {}
   async delete(id: any) {}
 }

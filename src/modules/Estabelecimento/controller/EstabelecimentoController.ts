@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import Proprietario from "../../../models/Proprietario";
-import CadastroUseCase from "../useCases/CadastroEstabelecimentoUseCase";
+import EstabelecimentoUseCase from "../useCases/EstabelecimentoUseCase";
 
-export default class CadastroController {
-  private useCase: CadastroUseCase;
+export default class EstabelecimentoController {
+  private useCase: EstabelecimentoUseCase;
 
-  constructor(useCase: CadastroUseCase) {
+  constructor(useCase: EstabelecimentoUseCase) {
     this.useCase = useCase;
   }
   create() {

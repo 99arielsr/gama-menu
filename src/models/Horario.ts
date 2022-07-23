@@ -1,5 +1,16 @@
 import { Schema, model } from "mongoose";
-import IHorario from "../repositories/Horario/IHorario";
+
+export interface IHorario {
+  hora_abre: Date;
+  hora_fecha: Date;
+  domingo: boolean;
+  segunda: boolean;
+  terca: boolean;
+  quarta: boolean;
+  quinta: boolean;
+  sexta: boolean;
+  sabado: boolean;
+}
 
 const horarioSchema = new Schema<IHorario>(
   {

@@ -1,5 +1,13 @@
 import { Schema, model } from "mongoose";
-import IProprietario from "../repositories/Proprietario/IProprietario"
+import { IEstabelecimento } from "./Estabelecimento";
+
+export interface IProprietario {
+  nome: string;
+  email: string;
+  senha: string;
+  hashResetSenha: string;
+  estabelecimento: Schema.Types.ObjectId[] | IEstabelecimento[];
+}
 
 const proprietarioSchema = new Schema <IProprietario> ({
   nome: {

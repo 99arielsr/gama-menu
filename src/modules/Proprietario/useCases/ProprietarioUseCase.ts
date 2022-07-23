@@ -1,4 +1,6 @@
 import IRepository from "../../../repositories/IRepository";
+import bcrypty from "bcryptjs";
+import { criptografia } from "../../../infra/adapters/criptografia";
 
 type PayloadCadastroProprietario = {
   nome: string,
@@ -8,16 +10,18 @@ type PayloadCadastroProprietario = {
 
 export default class ProprietarioUseCase {
   private repository: IRepository;
-  constructor(cadastroRepository: IRepository) {
-    this.repository = cadastroRepository;
+  constructor(proprietarioRepository: IRepository) {
+    this.repository = proprietarioRepository;
   }
   cadastroProprietario(payload: PayloadCadastroProprietario){
-    const proprietarioData = {
-      nome: payload.nome,
-      email: payload.email,
-      senha: payload.senha
-    }
-    const novoProprietario = this.repository.create(proprietarioData);
+
+    const novaSenha = criptografia.hash(payload.senha);
+    const novoProprietario = this.repository.create({...payload, senha: novaSenha});
     return novoProprietario;
+  }
+
+  listarProprietarios() {
+    const listarTodos = this.repository.find();
+    return listarTodos;
   }
 }

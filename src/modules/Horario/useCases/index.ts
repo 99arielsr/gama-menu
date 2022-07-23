@@ -1,5 +1,5 @@
 import { horarioRepository }  from "../../../repositories";
-import CadastroUseCase from "./CadastroEstabelecimentoUseCase";
+import CadastroUseCase from "./HorarioUseCase";
 
 const cadastroUseCaseHorario= new CadastroUseCase(horarioRepository);
 

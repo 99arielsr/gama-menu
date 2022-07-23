@@ -1,5 +1,18 @@
 import { Schema, model } from "mongoose";
-import IEstabelecimento from "../repositories/Estabelecimento/IEstabelecimento"
+import { IImages } from "./Images";
+import { IEndereco } from "./Endereco";
+import { IHorario } from "./Horario";
+
+export interface IEstabelecimento {
+    nome: string;
+    segmento: string;
+    logo: Schema.Types.ObjectId[] | IImages[];
+    endereco: Schema.Types.ObjectId[] | IEndereco[];
+    ativo: boolean;
+    horario: Schema.Types.ObjectId[] | IHorario[];
+    delivery: boolean;
+    retirada: boolean;
+  }
 
 const estabelecimentoSchema = new Schema <IEstabelecimento> ({
     nome: {

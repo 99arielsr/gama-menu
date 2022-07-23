@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Estabelecimento from "../../../models/Estabelecimento";
-import CadastroUseCase from "../useCases/CadastroEstabelecimentoUseCase";
+import CadastroUseCase from "../useCases/EstabelecimentoUseCase";
 
 export default class CadastroController {
   private useCase: CadastroUseCase;

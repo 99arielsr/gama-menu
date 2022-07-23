@@ -6,6 +6,6 @@ export default class Criptografia {
   }
 
   hash(payload: string) {
-    return this.lib.hash(payload, 10);
+    return this.lib.hashSync(payload, 10);
   }
 }

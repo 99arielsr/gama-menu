@@ -1,5 +1,5 @@
 import { cadastroUseCaseEndereco } from "../useCases";
-import CadastroController from "./CadastroController";
+import CadastroController from "./EnderecoController";
 
 const cadastroControllerEndereco = new CadastroController(cadastroUseCaseEndereco);
 

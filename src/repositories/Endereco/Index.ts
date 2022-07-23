@@ -1,6 +1,6 @@
 import IRepository from "../IRepository";
-import IEndereco from "./IEndereco";
 import { Model } from "mongoose";
+import { IEndereco } from "../../models/Endereco";
 
 export default class EnderecoRepository implements IRepository {
   private enderecoModel: any;
@@ -21,9 +21,10 @@ export default class EnderecoRepository implements IRepository {
     return this.enderecoModel.create(payload);
   }
   
-  async find(payload?: any) {}
+  async find() {
+    return this.enderecoModel.find();
+  }
   async update(payload: any) {}
-  async findAll(payload?: any) {}
   async findById(id: any) {}
   async delete(id: any) {}
 }

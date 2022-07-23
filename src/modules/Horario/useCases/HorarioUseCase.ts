@@ -1,5 +1,5 @@
+import { IHorario } from "../../../models/Horario";
 import IRepository from "../../../repositories/IRepository";
-import IHorario from "../../../repositories/Horario/IHorario";
 
 type PayloadCadastroHorario = IHorario;
 

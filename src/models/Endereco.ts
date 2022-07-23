@@ -1,5 +1,15 @@
 import { Schema, model } from "mongoose";
-import IEndereco from "../repositories/Endereco/IEndereco";
+
+export interface IEndereco {
+  cep: string
+  logradouro: string;
+  numero: number;
+  complemento: string;
+  referencia: string;
+  bairro: string;
+  cidade: string;
+  estado: string;
+}
 
 const enderecoSchema = new Schema<IEndereco>(
   {

@@ -1,5 +1,5 @@
 import { cadastroUseCaseEstabelecimento } from "../useCases";
-import CadastroController from "./CadastroController";
+import CadastroController from "./EstabelecimentoController";
 
 const cadastroControllerEstabelecimento = new CadastroController(cadastroUseCaseEstabelecimento);
 

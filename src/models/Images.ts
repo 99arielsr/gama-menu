@@ -1,5 +1,9 @@
 import { Schema, model } from "mongoose";
-import IImages from "../repositories/Images/IImages";
+
+export interface IImages {
+  link: string;
+  nome: string;
+}
 
 const imagesSchema = new Schema<IImages>(
   {

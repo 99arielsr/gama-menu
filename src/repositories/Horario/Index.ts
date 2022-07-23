@@ -1,6 +1,6 @@
 import IRepository from "../IRepository";
-import IHorario from "./IHorario";
 import { Model } from "mongoose";
+import { IHorario } from "../../models/Horario";
 
 export default class HorarioRepository implements IRepository {
   private horarioModel: any;
@@ -23,9 +23,10 @@ export default class HorarioRepository implements IRepository {
     return this.horarioModel.create(payload);
   }
   
-  async find(payload?: any) {}
+  async find() {
+    return this.horarioModel.find();
+  }
   async update(payload: any) {}
-  async findAll(payload?: any) {}
   async findById(id: any) {}
   async delete(id: any) {}
 }

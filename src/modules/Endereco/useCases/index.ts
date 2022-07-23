@@ -1,5 +1,5 @@
 import { enderecoRepository }  from "../../../repositories";
-import CadastroUseCase from "./CadastroEstabelecimentoUseCase";
+import CadastroUseCase from "./EstabelecimentoUseCase";
 
 const cadastroUseCaseEndereco= new CadastroUseCase(enderecoRepository);
 
