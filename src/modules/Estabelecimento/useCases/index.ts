@@ -1,6 +1,6 @@
-import { estabelecimentoRepository }  from "../../../repositories";
-import CadastroUseCase from "./EstabelecimentoUseCase";
+import { estabelecimentoRepository } from "../../../repositories";
+import EstabelecimentoUseCase from "./EstabelecimentoUseCase";
 
-const cadastroUseCaseEstabelecimento= new CadastroUseCase(estabelecimentoRepository);
+const estabelecimentoUseCase = new EstabelecimentoUseCase(estabelecimentoRepository);
 
-export { cadastroUseCaseEstabelecimento };
+export { estabelecimentoUseCase };

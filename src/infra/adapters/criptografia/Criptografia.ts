@@ -5,7 +5,7 @@ export default class Criptografia {
     this.lib = lib;
   }
 
-  hash(payload: string) {
+  hashSync(payload: string) {
     return this.lib.hashSync(payload, 10);
   }
 }

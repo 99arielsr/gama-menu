@@ -15,13 +15,12 @@ export default class ProprietarioUseCase {
   }
   cadastroProprietario(payload: PayloadCadastroProprietario){
 
-    const novaSenha = criptografia.hash(payload.senha);
+    const novaSenha = criptografia.hashSync(payload.senha);
     const novoProprietario = this.repository.create({...payload, senha: novaSenha});
     return novoProprietario;
   }
 
   listarProprietarios() {
-    const listarTodos = this.repository.find();
-    return listarTodos;
+    return this.repository.find();
   }
 }

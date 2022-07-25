@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { cadastroControllerEstabelecimento } from "../controller";
+import { estabelecimentoController } from "../controller";
 
 const routes = Router();
 
-routes.post("/cadastroestabelecimento/:id", cadastroControllerEstabelecimento.create());
+routes.post("/estabelecimento/:id", estabelecimentoController.create());
+routes.get("/estabelecimento", estabelecimentoController.find());
 
 export default routes;

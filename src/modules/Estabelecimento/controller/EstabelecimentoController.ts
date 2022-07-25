@@ -43,4 +43,16 @@ export default class EstabelecimentoController {
       }
     };
   }
+
+  find() {
+    return async (req: Request, res: Response) => {
+      try {
+        const listarTodos = await this.useCase.listarEstabelecimento();
+        return res.status(200).json(listarTodos);
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json("Ocorreu algum erro, contate o suporte!");
+      }
+    }
+  }
 }
