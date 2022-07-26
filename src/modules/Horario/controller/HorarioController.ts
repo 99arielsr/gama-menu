@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
+import { ObjectId } from "mongoose";
 import Estabelecimento from "../../../models/Estabelecimento";
+import { IHorario } from "../../../models/Horario";
 import CadastroUseCase from "../useCases/HorarioUseCase";
 
 export default class CadastroController {
@@ -27,11 +29,18 @@ export default class CadastroController {
           sabado,
         })
 
-        // const horarioExistente = await Estabelecimento.findById(id).select({horario});
+        const estabelecimento = await Estabelecimento.findById(id);
+        let horarioExistente: IHorario[] | ObjectId[] = []
+        
+        if  (estabelecimento){
+          horarioExistente = estabelecimento.horario;
+        }
 
         await  Estabelecimento.findByIdAndUpdate( id, {
-          // horarioExistente,
-          horario: [horario.id]
+          horario: [
+            ...horarioExistente,
+            horario.id
+          ]
         })
 
         return res.status(201).json(horario);
