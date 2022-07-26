@@ -1,5 +1,6 @@
-import IRepository from "../../../repositories/IRepository";
+import { Response, Request } from "express";
 import bcrypty from "bcryptjs";
+import IRepository from "../../../repositories/IRepository";
 import { criptografia } from "../../../infra/adapters/criptografia";
 
 type PayloadCadastroProprietario = {
@@ -22,5 +23,9 @@ export default class ProprietarioUseCase {
 
   listarProprietarios() {
     return this.repository.find();
+  }
+
+  listarProprietarioId(payload: any) {
+    return this.repository.findOne(payload._id);
   }
 }

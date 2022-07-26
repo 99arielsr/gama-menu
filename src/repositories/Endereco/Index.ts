@@ -25,6 +25,6 @@ export default class EnderecoRepository implements IRepository {
     return this.enderecoModel.find();
   }
   async update(payload: any) {}
-  async findById(id: any) {}
+  async findOne(payload: any) {}
   async delete(id: any) {}
 }

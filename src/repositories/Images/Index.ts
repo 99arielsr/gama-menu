@@ -20,7 +20,7 @@ export default class ImageRepository implements IRepository {
     return this.imageModel.find();
   }
 
+  async findOne(payload: any) {}
   async update(payload: any) {}
-  async findById(id: any) {}
-  async delete(id: any) {}
+  async delete(payload: any) {}
 }

@@ -1,15 +1,15 @@
 import { Response, Request } from "express";
 import bcrypt from "bcryptjs";
-import { user } from "../../models";
 import jwt from "jsonwebtoken";
 import CryptoJS from "crypto-js";
+import { proprietarioRepository } from "../../repositories";
 
 import logger from "../../infra/logger";
 const controller = {
   async login(req: Request, res: Response) {
     const { email, senha } = req.body;
 
-    const targetUser = await user.instance.findOne({
+    const targetUser = await proprietarioRepository.findOne({
       where: {
         email,
       },
@@ -25,10 +25,9 @@ const controller = {
 
     const token = jwt.sign(
       {
-        id: targetUser.id,
+        _id: targetUser.id,
         email: targetUser.email,
         nome: targetUser.name,
-        nivel: targetUser.nivel,
       },
       "BOSSGAMA"
     );
@@ -44,7 +43,7 @@ const controller = {
     );
     const { email } = req.body;
 
-    const savedUser = await user.instance.findOne({
+    const savedUser = await proprietarioRepository.findOne({
       where: {
         email,
       },
@@ -83,7 +82,7 @@ const controller = {
       return res.status(400).json("token invalido");
     }
 
-    const savedUser = await user.instance.findOne({
+    const savedUser = await proprietarioRepository.findOne({
       where: {
         email,
       },

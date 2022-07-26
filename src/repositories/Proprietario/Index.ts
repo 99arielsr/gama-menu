@@ -27,5 +27,10 @@ export default class ProprietarioRepository implements IRepository {
       select: "nome",
     });
   }
-  async delete(id: any) {}
+
+  async findOne(payload: any) {
+      return this.proprietarioModel.findById(payload);
+    }
+
+  async delete(payload: any) {}
 }

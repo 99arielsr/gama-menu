@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { request, Request, Response } from "express";
 import ProprietarioUseCase from "../useCases/ProprietarioUseCase";
 import Proprietario from "../../../models/Proprietario";
 
@@ -44,6 +44,16 @@ export default class ProprietarioController {
         console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
+    }
+  }
+
+  findOne() {
+    return async (req: Request, res: Response) => {
+      const { _id } = req.params;
+
+      const proprietarioId = this.useCase.listarProprietarioId(_id);
+
+      return res.status(200).json(proprietarioId);
     }
   }
 }

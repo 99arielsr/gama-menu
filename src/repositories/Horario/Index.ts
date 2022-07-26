@@ -27,6 +27,6 @@ export default class HorarioRepository implements IRepository {
     return this.horarioModel.find();
   }
   async update(payload: any) {}
-  async findById(id: any) {}
-  async delete(id: any) {}
+  async findOne(payload: any) {}
+  async delete(payload: any) {}
 }

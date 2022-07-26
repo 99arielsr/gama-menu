@@ -30,6 +30,6 @@ export default class EstabelecimentoRepository implements IRepository {
   }
   
   async update(payload: any) {}
-  async findById(id: any) {}
+  async findOne(payload: any) {}
   async delete(id: any) {}
 }
