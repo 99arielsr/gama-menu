@@ -30,7 +30,7 @@ const controller = {
         nome: targetUser.name,
         nivel: targetUser.nivel,
       },
-      "CRUDGAMA"
+      "BOSSGAMA"
     );
 
     return res.json(token);
