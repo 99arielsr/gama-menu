@@ -1,4 +1,5 @@
 import Conection from "./Conection";
+import ENV from "../infra/config/env";
 
-const mongoDBConection = new Conection("mongodb://localhost:27017/Lacrei-api");
+const mongoDBConection = new Conection(ENV.DATABASE);
 export { mongoDBConection };
