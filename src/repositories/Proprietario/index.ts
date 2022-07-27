@@ -13,7 +13,7 @@ export default class ProprietarioRepository implements IRepository {
       nome: string;
       email: string;
       senha: string;
-      hashResetSenha: string;
+      hashResetSenha: string | null;
       estabelecimento: IEstabelecimento [];
     }
   ){

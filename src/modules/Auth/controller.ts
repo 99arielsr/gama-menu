@@ -2,15 +2,16 @@ import { Response, Request } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import CryptoJS from "crypto-js";
-import { proprietarioRepository } from "../../repositories";
+import Proprietario from "../../models/Proprietario";
+import { criptografia } from "../../infra/adapters/criptografia";
 
 import logger from "../../infra/logger";
 const controller = {
   async login(req: Request, res: Response) {
     const { email, senha } = req.body;
 
-    const targetUser = await proprietarioRepository.findOne({
-      where: {
+    const targetUser = await Proprietario.findOne({
+      select: {
         email,
       },
     });
@@ -27,7 +28,7 @@ const controller = {
       {
         _id: targetUser.id,
         email: targetUser.email,
-        nome: targetUser.name,
+        nome: targetUser.nome,
       },
       "BOSSGAMA"
     );
@@ -43,8 +44,8 @@ const controller = {
     );
     const { email } = req.body;
 
-    const savedUser = await proprietarioRepository.findOne({
-      where: {
+    const savedUser = await Proprietario.findOne({
+      select: {
         email,
       },
     });
@@ -82,8 +83,8 @@ const controller = {
       return res.status(400).json("token invalido");
     }
 
-    const savedUser = await proprietarioRepository.findOne({
-      where: {
+    const savedUser = await Proprietario.findOne({
+      select: {
         email,
       },
     });
@@ -104,9 +105,9 @@ const controller = {
       return res.status(400).json("Senha ja utilizada");
     }
 
-    const newSenha = bcrypt.hashSync(senha, 10);
+    const novaSenha = criptografia.hashSync(savedUser.senha);
 
-    savedUser.senha = newSenha;
+    savedUser.senha = novaSenha;
 
     savedUser.hashResetSenha = null;
 

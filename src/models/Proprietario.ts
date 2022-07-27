@@ -5,7 +5,7 @@ export interface IProprietario {
   nome: string;
   email: string;
   senha: string;
-  hashResetSenha: string;
+  hashResetSenha: string | null;
   estabelecimento: Schema.Types.ObjectId[] | IEstabelecimento[];
 }
 
