@@ -2,4 +2,5 @@ import App from "./infra/App";
 
 const app = new App();
 
-app.setup({});
+const port = process.env.PORT ? (process.env.PORT as unknown as number) : 4000;
+app.setup({ port });
