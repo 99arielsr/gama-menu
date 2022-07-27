@@ -3,9 +3,9 @@ import server from "supertest";
 import App from "../../../infra/App";
 
 describe("E2E - Proprietario", () => {  
-  it("deve retornar status 201 ao cadastrar um profissional", async () => {
+  it("deve retornar status 200 ao cadastrar um profissional", async () => {
     const app = new App();
-    app.setup({
+    await app.setup({
       isTest: true,
     });
     const application = app.getInstance();
@@ -14,8 +14,7 @@ describe("E2E - Proprietario", () => {
       email: "teste@teste.com",
       senha: "tesTe@123"
     });
-
-    console.log(response);
-    expect(response.statusCode).toEqual(201);
+    
+    expect(response.statusCode).toEqual(200);
   })
 })
