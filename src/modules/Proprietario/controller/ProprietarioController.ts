@@ -58,7 +58,6 @@ export default class ProprietarioController {
         const listarProprietario = await this.useCase.listarId(id);
         return res.status(200).json(listarProprietario);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suprote!");
       }
     };

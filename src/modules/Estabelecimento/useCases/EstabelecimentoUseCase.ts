@@ -8,7 +8,7 @@ export default class EstabelecimentoUseCase {
   constructor(estabelecimentoRepository: IRepository) {
     this.repository = estabelecimentoRepository;
   }
-  cadastroEstabelecimento(payload: PayloadCadastroEstabelecimento) {
+  criar(payload: PayloadCadastroEstabelecimento) {
     const estabelecimentoData = [
       {
         nome: payload.nome,
@@ -22,11 +22,22 @@ export default class EstabelecimentoUseCase {
         logo: payload.logo,
       },
     ];
-    const novoEstabelecimento = this.repository.create(estabelecimentoData);
-    return novoEstabelecimento;
+    return this.repository.create(estabelecimentoData);
   }
 
-  listarEstabelecimento() {
+  listar() {
     return this.repository.find();
+  }
+
+  listarId(id: any) {
+    return this.repository.findOne(id);
+  }
+
+  atualizar(id: any, payload: PayloadCadastroEstabelecimento) {
+    return this.repository.update(id, payload);
+  }
+
+  deletar(id: any) {
+    return this.repository.delete(id);
   }
 }

@@ -1,6 +1,6 @@
 import { cadastroUseCaseEndereco } from "../useCases";
 import CadastroController from "./EnderecoController";
 
-const cadastroControllerEndereco = new CadastroController(cadastroUseCaseEndereco);
+const controllerEndereco = new CadastroController(cadastroUseCaseEndereco);
 
-export { cadastroControllerEndereco }
+export { controllerEndereco }

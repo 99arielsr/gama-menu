@@ -9,7 +9,7 @@ export default class CadastroUseCase {
     this.repository = cadastroRepository;
   }
   
-  cadastroEndereco(payload: PayloadCadastroEndereco){
+  criar(payload: PayloadCadastroEndereco){
     const enderecoData = {
       cep: payload.cep,
       logradouro: payload.logradouro,
@@ -20,7 +20,22 @@ export default class CadastroUseCase {
       cidade: payload.cidade,
       estado: payload.estado,
     }
-    const novoEndereco = this.repository.create(enderecoData);
-    return novoEndereco;
+    return this.repository.create(enderecoData);
+  }
+
+  listar() {
+    return this.repository.find();
+  }
+
+  listarId(id: any) {
+    return this.repository.findOne(id);
+  }
+
+  atualizar(id: any, payload: PayloadCadastroEndereco) {
+    return this.repository.update(id, payload);
+  }
+
+  deletar(id: any) {
+    return this.repository.delete(id);
   }
 }
