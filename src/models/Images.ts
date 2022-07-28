@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 export interface IImages {
   link: string;
   nome: string;
+  descricao: string;
 }
 
 const imagesSchema = new Schema<IImages>(
@@ -11,6 +12,9 @@ const imagesSchema = new Schema<IImages>(
       type: Schema.Types.String,
     },
     nome: {
+      type: Schema.Types.String,
+    },
+    descricao: {
       type: Schema.Types.String,
     },
   },

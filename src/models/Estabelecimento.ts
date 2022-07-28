@@ -2,12 +2,14 @@ import { Schema, model } from "mongoose";
 import { IImages } from "./Images";
 import { IEndereco } from "./Endereco";
 import { IHorario } from "./Horario";
+import { ICardapio } from "./Cardapio";
 
 export interface IEstabelecimento {
     nome: string;
     segmento: string;
     logo: Schema.Types.ObjectId[] | IImages[];
     endereco: Schema.Types.ObjectId[] | IEndereco[];
+    cardapio: Schema.Types.ObjectId[] | ICardapio[];
     ativo: boolean;
     horario: Schema.Types.ObjectId[] | IHorario[];
     delivery: boolean;
@@ -31,6 +33,12 @@ const estabelecimentoSchema = new Schema <IEstabelecimento> ({
         {
             type: Schema.Types.ObjectId,
             ref: "Endereco",
+        },
+    ],
+    cardapio: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Cardapio",
         },
     ],
     ativo: {

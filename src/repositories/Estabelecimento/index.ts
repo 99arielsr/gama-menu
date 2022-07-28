@@ -1,4 +1,5 @@
 import { Model, Schema } from "mongoose";
+import { ICardapio } from "../../models/Cardapio";
 import { IEndereco } from "../../models/Endereco";
 import { IEstabelecimento } from "../../models/Estabelecimento";
 import { IHorario } from "../../models/Horario";
@@ -15,10 +16,11 @@ export default class EstabelecimentoRepository implements IRepository {
       nome: string;
       segmento: string;
       logo: Schema.Types.ObjectId[] | IImages[]; 
-      endereco: Schema.Types.ObjectId[] | IEndereco[]; 
+      endereco: Schema.Types.ObjectId[] | IEndereco[];
+      cardapio: Schema.Types.ObjectId[] | ICardapio[]; 
       ativo: boolean; 
       horario: Schema.Types.ObjectId[] | IHorario []; 
-      delivery: boolean; 
+      delivery: boolean;
       retirada: boolean;
     }
   ){

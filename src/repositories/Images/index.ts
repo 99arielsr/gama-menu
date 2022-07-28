@@ -11,6 +11,7 @@ export default class ImageRepository implements IRepository {
     payload: { 
       link: string; 
       nome: string;
+      descricao: string;
     }
   ){
     return this.imageModel.create(payload);
