@@ -28,8 +28,8 @@ export default class ProprietarioRepository implements IRepository {
     });
   }
 
-  async findOne(payload: any) {
-      return this.proprietarioModel.findById(payload);
+  async findOne(id: any) {
+      return this.proprietarioModel.findById(id);
     }
 
   async delete(payload: any) {}

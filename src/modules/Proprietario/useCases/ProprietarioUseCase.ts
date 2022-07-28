@@ -25,7 +25,7 @@ export default class ProprietarioUseCase {
     return this.repository.find();
   }
 
-  listarProprietarioId(payload: any) {
-    return this.repository.findOne(payload._id);
+  listarProprietarioId(id: any) {
+    return this.repository.findOne(id);
   }
 }
