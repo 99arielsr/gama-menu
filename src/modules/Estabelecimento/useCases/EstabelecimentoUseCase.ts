@@ -18,6 +18,7 @@ export default class EstabelecimentoUseCase {
         retirada: payload.retirada,
         horario: payload.horario,
         endereco: payload.endereco,
+        cardapio: payload.cardapio,
         logo: payload.logo,
       },
     ];

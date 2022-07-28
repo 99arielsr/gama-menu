@@ -12,7 +12,7 @@ export default class EstabelecimentoController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        const { nome, segmento, ativo, delivery, retirada, horario, endereco, logo} = req.body;  
+        const { nome, segmento, ativo, delivery, retirada, horario, endereco, cardapio, logo} = req.body;  
         
         const proprietarioExistente = await Proprietario.count({
           id,
@@ -30,6 +30,7 @@ export default class EstabelecimentoController {
           retirada,
           horario,
           endereco,
+          cardapio,
           logo
         })
 
