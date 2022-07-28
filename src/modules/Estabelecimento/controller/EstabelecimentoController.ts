@@ -54,7 +54,7 @@ export default class EstabelecimentoController {
         }
 
         await Proprietario.findByIdAndUpdate(id, {
-          estabelecimento: [...estabelecimentoExistente, estabelecimento._id],
+          estabelecimento: [...estabelecimentoExistente, estabelecimento.id],
         });
 
         return res.status(201).json(estabelecimento);
