@@ -7,26 +7,46 @@ export default class HorarioRepository implements IRepository {
   constructor(horarioModel: Model<IHorario>) {
     this.horarioModel = horarioModel;
   }
-  async create(
-    payload: { 
-      hora_abre: Date; 
-      hora_fecha: Date; 
-      domingo: boolean; 
-      segunda: boolean; 
-      terca: boolean; 
-      quarta: boolean; 
-      quinta: boolean; 
-      sexta: boolean; 
-      sabado: boolean;
-    }
-    ){
+  async create(payload: {
+    hora_abre: Date;
+    hora_fecha: Date;
+    domingo: boolean;
+    segunda: boolean;
+    terca: boolean;
+    quarta: boolean;
+    quinta: boolean;
+    sexta: boolean;
+    sabado: boolean;
+  }) {
     return this.horarioModel.create(payload);
   }
-  
+
   async find() {
     return this.horarioModel.find();
   }
-  async update(payload: any) {}
-  async findOne(payload: any) {}
-  async delete(payload: any) {}
+
+  async findOne(id: any) {
+    return this.horarioModel.findById(id);
+  }
+
+  async update(
+    id: any,
+    payload: {
+      hora_abre: Date;
+      hora_fecha: Date;
+      domingo: boolean;
+      segunda: boolean;
+      terca: boolean;
+      quarta: boolean;
+      quinta: boolean;
+      sexta: boolean;
+      sabado: boolean;
+    }
+  ) {
+    await this.horarioModel.findById({ _id: id }, payload);
+  }
+
+  async delete(id: any) {
+    return await this.horarioModel.deleteOne({ _id: id });
+  }
 }

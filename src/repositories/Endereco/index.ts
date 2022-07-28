@@ -7,24 +7,42 @@ export default class EnderecoRepository implements IRepository {
   constructor(enderecoModel: Model<IEndereco>) {
     this.enderecoModel = enderecoModel;
   }
-  async create(
-    payload: { 
-      logradouro: string; 
-      numero: number; 
-      complemento: string;
-      referencia: string; 
-      bairro: string; 
-      cidade: string; 
-      estado: string;
-    }
-  ){
+  async create(payload: {
+    logradouro: string;
+    numero: number;
+    complemento: string;
+    referencia: string;
+    bairro: string;
+    cidade: string;
+    estado: string;
+  }) {
     return this.enderecoModel.create(payload);
   }
-  
+
   async find() {
     return this.enderecoModel.find();
   }
-  async update(payload: any) {}
-  async findOne(payload: any) {}
-  async delete(id: any) {}
+
+  async findOne(id: any) {
+    return this.enderecoModel.findById(id);
+  }
+
+  async update(
+    id: any,
+    payload: {
+      logradouro: string;
+      numero: number;
+      complemento: string;
+      referencia: string;
+      bairro: string;
+      cidade: string;
+      estado: string;
+    }
+  ) {
+    await this.enderecoModel.findById({ _id: id }, payload);
+  }
+
+  async delete(id: any) {
+    return await this.enderecoModel.deleteOne({ _id: id });
+  }
 }

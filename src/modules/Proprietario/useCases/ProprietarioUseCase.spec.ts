@@ -28,7 +28,7 @@ describe("Proprietario - UseCase", () => {
 
     const useCase = new ProprietarioUseCase(proprietarioRepositoryMocked);
 
-    const response = await useCase.cadastroProprietario(payload);
+    const response = await useCase.criar(payload);
 
     console.log(response);
     expect(response).toBeTruthy();

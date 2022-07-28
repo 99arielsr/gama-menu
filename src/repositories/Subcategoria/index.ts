@@ -8,20 +8,32 @@ export default class SubcategoriaRepository implements IRepository {
   constructor(subcategoriaModel: Model<ISubcategorias>) {
     this.subcategoriaModel = subcategoriaModel;
   }
-  async create(
-    payload: { 
-      nome: string;
-      produtos: Schema.Types.ObjectId[] | IProdutos[]; 
-    }
-  ){
+  async create(payload: {
+    nome: string;
+    produtos: Schema.Types.ObjectId[] | IProdutos[];
+  }) {
     return this.subcategoriaModel.create(payload);
   }
-  
+
   async find() {
     return this.subcategoriaModel.find();
   }
-  
-  async update(payload: any) {}
-  async findOne(payload: any) {}
-  async delete(id: any) {}
+
+  async findOne(id: any) {
+    return this.subcategoriaModel.findById(id);
+  }
+
+  async update(
+    id: any,
+    payload: {
+      nome: string;
+      produtos: Schema.Types.ObjectId[] | IProdutos[];
+    }
+  ) {
+    await this.subcategoriaModel.findById({ _id: id }, payload);
+  }
+
+  async delete(id: any) {
+    return await this.subcategoriaModel.deleteOne({ _id: id });
+  }
 }

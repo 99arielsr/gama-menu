@@ -8,22 +8,36 @@ export default class ProdutoRepository implements IRepository {
   constructor(produtoModel: Model<IProdutos>) {
     this.produtoModel = produtoModel;
   }
-  async create(
-    payload: { 
-      nome: string;
-      descricao: string;
-      preco: number;
-      imagem: Schema.Types.ObjectId[] | IImages[];  
-    }
-  ){
+  async create(payload: {
+    nome: string;
+    descricao: string;
+    preco: number;
+    imagem: Schema.Types.ObjectId[] | IImages[];
+  }) {
     return this.produtoModel.create(payload);
   }
-  
+
   async find() {
     return this.produtoModel.find();
   }
-  
-  async update(payload: any) {}
-  async findOne(payload: any) {}
-  async delete(id: any) {}
+
+  async findOne(id: any) {
+    return this.produtoModel.findById(id);
+  }
+
+  async update(
+    id: any,
+    payload: {
+      nome: string;
+      descricao: string;
+      preco: number;
+      imagem: Schema.Types.ObjectId[] | IImages[];
+    }
+  ) {
+    await this.produtoModel.findById({ _id: id }, payload);
+  }
+
+  async delete(id: any) {
+    return await this.produtoModel.deleteOne({ _id: id });
+  }
 }

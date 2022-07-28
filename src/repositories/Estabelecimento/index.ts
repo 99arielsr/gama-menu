@@ -11,27 +11,46 @@ export default class EstabelecimentoRepository implements IRepository {
   constructor(estabelecimentoModel: Model<IEstabelecimento>) {
     this.estabelecimentoModel = estabelecimentoModel;
   }
-  async create(
-    payload: { 
-      nome: string;
-      segmento: string;
-      logo: Schema.Types.ObjectId[] | IImages[]; 
-      endereco: Schema.Types.ObjectId[] | IEndereco[];
-      cardapio: Schema.Types.ObjectId[] | ICardapio[]; 
-      ativo: boolean; 
-      horario: Schema.Types.ObjectId[] | IHorario []; 
-      delivery: boolean;
-      retirada: boolean;
-    }
-  ){
+  async create(payload: {
+    nome: string;
+    segmento: string;
+    logo: Schema.Types.ObjectId[] | IImages[];
+    endereco: Schema.Types.ObjectId[] | IEndereco[];
+    cardapio: Schema.Types.ObjectId[] | ICardapio[];
+    ativo: boolean;
+    horario: Schema.Types.ObjectId[] | IHorario[];
+    delivery: boolean;
+    retirada: boolean;
+  }) {
     return this.estabelecimentoModel.create(payload);
   }
-  
+
   async find() {
     return this.estabelecimentoModel.find();
   }
-  
-  async update(payload: any) {}
-  async findOne(payload: any) {}
-  async delete(id: any) {}
+
+  async findOne(id: any) {
+    return this.estabelecimentoModel.findById(id);
+  }
+
+  async update(
+    id: any,
+    payload: {
+      nome: string;
+      segmento: string;
+      logo: Schema.Types.ObjectId[] | IImages[];
+      endereco: Schema.Types.ObjectId[] | IEndereco[];
+      cardapio: Schema.Types.ObjectId[] | ICardapio[];
+      ativo: boolean;
+      horario: Schema.Types.ObjectId[] | IHorario[];
+      delivery: boolean;
+      retirada: boolean;
+    }
+  ) {
+    await this.estabelecimentoModel.findById({ _id: id }, payload);
+  }
+
+  async delete(id: any) {
+    return await this.estabelecimentoModel.deleteOne({ _id: id });
+  }
 }

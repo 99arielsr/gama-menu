@@ -8,20 +8,32 @@ export default class CategoriaRepository implements IRepository {
   constructor(categoriaModel: Model<ICategorias>) {
     this.categoriaModel = categoriaModel;
   }
-  async create(
-    payload: { 
-      nome: string;
-      subcategoria: Schema.Types.ObjectId[] | ISubcategorias[]; 
-    }
-  ){
+  async create(payload: {
+    nome: string;
+    subcategoria: Schema.Types.ObjectId[] | ISubcategorias[];
+  }) {
     return this.categoriaModel.create(payload);
   }
-  
+
   async find() {
     return this.categoriaModel.find();
   }
-  
-  async update(payload: any) {}
-  async findOne(payload: any) {}
-  async delete(id: any) {}
+
+  async findOne(id: any) {
+    return this.categoriaModel.findById(id);
+  }
+
+  async update(
+    id: any,
+    payload: {
+      nome: string;
+      subcategoria: Schema.Types.ObjectId[] | ISubcategorias[];
+    }
+  ) {
+    await this.categoriaModel.findById({ _id: id }, payload);
+  }
+
+  async delete(id: any) {
+    return await this.categoriaModel.deleteOne({ _id: id });
+  }
 }

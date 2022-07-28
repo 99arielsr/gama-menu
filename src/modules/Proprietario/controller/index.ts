@@ -1,6 +1,6 @@
 import { proprietarioUseCase } from "../useCases";
 import ProprietarioController from "./ProprietarioController";
 
-const proprietarioController = new ProprietarioController(proprietarioUseCase);
+const controller = new ProprietarioController(proprietarioUseCase);
 
-export { proprietarioController }
+export { controller };

@@ -1,6 +1,6 @@
 import { horarioRepository }  from "../../../repositories";
-import CadastroUseCase from "./HorarioUseCase";
+import HorarioUseCase from "./HorarioUseCase";
 
-const cadastroUseCaseHorario= new CadastroUseCase(horarioRepository);
+const horarioUseCase= new HorarioUseCase(horarioRepository);
 
-export { cadastroUseCaseHorario };
+export { horarioUseCase };

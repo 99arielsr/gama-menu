@@ -1,6 +1,7 @@
 import { Model, Schema } from "mongoose";
 import { ICardapio } from "../../models/Cardapio";
 import { ICategorias } from "../../models/Categoria";
+import { ISubcategorias } from "../../models/Subcategoria";
 import IRepository from "../IRepository";
 
 export default class CardapioRepository implements IRepository {
@@ -19,8 +20,22 @@ export default class CardapioRepository implements IRepository {
   async find() {
     return this.cardapioModel.find();
   }
-  
-  async update(payload: any) {}
-  async findOne(payload: any) {}
-  async delete(id: any) {}
+
+  async findOne(id: any) {
+    return this.cardapioModel.findById(id);
+  }
+
+  async update(
+    id: any,
+    payload: {
+      nome: string;
+      subcardapio: Schema.Types.ObjectId[] | ISubcategorias[];
+    }
+  ) {
+    await this.cardapioModel.findById({ _id: id }, payload);
+  }
+
+  async delete(id: any) {
+    return await this.cardapioModel.deleteOne({ _id: id });
+  }
 }

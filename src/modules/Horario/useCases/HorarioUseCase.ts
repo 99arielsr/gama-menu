@@ -3,12 +3,12 @@ import IRepository from "../../../repositories/IRepository";
 
 type PayloadCadastroHorario = IHorario;
 
-export default class CadastroUseCase {
+export default class HorarioUseCase {
   private repository: IRepository;
   constructor(cadastroRepository: IRepository) {
     this.repository = cadastroRepository;
   }
-  cadastroHorario(payload: PayloadCadastroHorario){
+  criar(payload: PayloadCadastroHorario){
     const horarioData = {
       hora_abre: payload.hora_abre,
       hora_fecha: payload.hora_fecha,
@@ -20,7 +20,22 @@ export default class CadastroUseCase {
       sexta: payload.sexta,
       sabado: payload.sabado,
     }
-    const novoHorario = this.repository.create(horarioData);
-    return novoHorario;
+    return this.repository.create(horarioData);
+  }
+
+  listar() {
+    return this.repository.find();
+  }
+
+  listarId(id: any) {
+    return this.repository.findOne(id);
+  }
+
+  atualizar(id: any, payload: PayloadCadastroHorario) {
+    return this.repository.update(id, payload);
+  }
+
+  deletar(id: any) {
+    return this.repository.delete(id);
   }
 }

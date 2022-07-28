@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { proprietarioController } from "../controller";
+import { controller } from "../controller";
 
 const routes = Router();
 
-routes.post("/proprietario", proprietarioController.create());
-routes.get("/proprietario", proprietarioController.find());
-routes.get("/proprietario/:id", proprietarioController.findOne());
+routes.post("/proprietario", controller.create());
+routes.get("/proprietario", controller.find());
+routes.get("/proprietario/:id", controller.findOne());
+routes.put("/proprietario/:id", controller.update());
+routes.delete("/proprietario/:id", controller.delete());
 
 export default routes;

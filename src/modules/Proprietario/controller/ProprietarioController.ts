@@ -12,8 +12,7 @@ export default class ProprietarioController {
   create() {
     return async (req: Request, res: Response) => {
       try {
-        const { nome, email, senha } =
-          req.body;
+        const { nome, email, senha } = req.body;
 
         const savedProprietario = await Proprietario.count({
           email,
@@ -23,7 +22,7 @@ export default class ProprietarioController {
           return res.status(400).json("Email já cadastrado no banco.");
         }
 
-        const proprietario = await this.useCase.cadastroProprietario({
+        const proprietario = await this.useCase.criar({
           ...req.body,
         });
 
@@ -38,22 +37,67 @@ export default class ProprietarioController {
   find() {
     return async (req: Request, res: Response) => {
       try {
-        const listarTodos = await this.useCase.listarProprietarios();
+        const listarTodos = await this.useCase.listar();
         return res.status(200).json(listarTodos);
       } catch (error) {
         console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
-    }
+    };
   }
 
   findOne() {
     return async (req: Request, res: Response) => {
-      const { _id } = req.params;
+      try {
+        const { id } = req.params;
 
-      const proprietarioId = this.useCase.listarProprietarioId(_id);
+        if(!id){
+          return res.status(404).json("Envie um id válido!");
+        }
 
-      return res.status(200).json(proprietarioId);
-    }
+        const listarProprietario = await this.useCase.listarId(id);
+        return res.status(200).json(listarProprietario);
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json("Ocorreu algum erro, contate o suprote!");
+      }
+    };
+  }
+
+  update() {
+    return async (req: Request, res: Response) => {
+      try {
+        const { id } = req.params;
+        
+        if(!id){
+          return res.status(404).json("Envie um id válido!");
+        }
+
+        const { nome, email, senha } = req.body;
+        const atualizado = await this.useCase.atualizar(id, {...req.body});
+        return res.status(200).json(atualizado);
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json("Ocorreu algum erro, contate o suporte!");
+      }
+    };
+  }
+
+  delete() {
+    return async (req: Request, res: Response) => {
+      try {
+        const { id } = req.params;
+
+        if(!id){
+          return res.status(404).json("Envie um id válido!");
+        }
+
+        await this.useCase.deletar(id);
+        return res.status(204);
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json("Ocorreu algum erro, contate o suporte!");
+      }
+    };
   }
 }

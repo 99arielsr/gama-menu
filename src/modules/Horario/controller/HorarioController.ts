@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import { ObjectId } from "mongoose";
 import Estabelecimento from "../../../models/Estabelecimento";
 import { IHorario } from "../../../models/Horario";
-import CadastroUseCase from "../useCases/HorarioUseCase";
+import HorarioUseCase from "../useCases/HorarioUseCase";
 
-export default class CadastroController {
-  private useCase: CadastroUseCase;
+export default class HorarioController {
+  private useCase: HorarioUseCase;
 
-  constructor(useCase: CadastroUseCase) {
+  constructor(useCase: HorarioUseCase) {
     this.useCase = useCase;
   }
 
@@ -17,7 +17,7 @@ export default class CadastroController {
         const { id } = req.params;
         const { hora_abre, hora_fecha, domingo, segunda, terca, quarta, quinta, sexta, sabado } = req.body;
 
-        const horario = await this.useCase.cadastroHorario({
+        const horario = await this.useCase.criar({
           hora_abre,
           hora_fecha,
           domingo,

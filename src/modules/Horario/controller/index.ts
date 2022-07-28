@@ -1,6 +1,6 @@
-import { cadastroUseCaseHorario } from "../useCases";
-import CadastroController from "./HorarioController";
+import { horarioUseCase } from "../useCases";
+import HorarioController from "./HorarioController";
 
-const cadastroControllerHorario = new CadastroController(cadastroUseCaseHorario);
+const controller = new HorarioController(horarioUseCase);
 
-export { cadastroControllerHorario }
+export { controller }

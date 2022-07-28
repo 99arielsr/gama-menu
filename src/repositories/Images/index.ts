@@ -7,21 +7,30 @@ export default class ImageRepository implements IRepository {
   constructor(imageModel: Model<IImages>) {
     this.imageModel = imageModel;
   }
-  async create(
-    payload: { 
-      link: string; 
-      nome: string;
-      descricao: string;
-    }
-  ){
+  async create(payload: { link: string; nome: string; descricao: string }) {
     return this.imageModel.create(payload);
   }
-  
+
   async find() {
     return this.imageModel.find();
   }
 
-  async findOne(payload: any) {}
-  async update(payload: any) {}
-  async delete(payload: any) {}
+  async findOne(id: any) {
+    return this.imageModel.findById(id);
+  }
+
+  async update(
+    id: any,
+    payload: {
+      link: string;
+      nome: string;
+      descricao: string;
+    }
+  ) {
+    await this.imageModel.findById({ _id: id }, payload);
+  }
+
+  async delete(id: any) {
+    return await this.imageModel.deleteOne({ _id: id });
+  }
 }

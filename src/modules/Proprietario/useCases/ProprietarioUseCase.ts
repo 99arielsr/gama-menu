@@ -14,18 +14,25 @@ export default class ProprietarioUseCase {
   constructor(proprietarioRepository: IRepository) {
     this.repository = proprietarioRepository;
   }
-  cadastroProprietario(payload: PayloadCadastroProprietario){
-
+  criar(payload: PayloadCadastroProprietario){
     const novaSenha = criptografia.hashSync(payload.senha);
     const novoProprietario = this.repository.create({...payload, senha: novaSenha});
     return novoProprietario;
   }
 
-  listarProprietarios() {
+  listar() {
     return this.repository.find();
   }
 
-  listarProprietarioId(id: any) {
+  listarId(id: any) {
     return this.repository.findOne(id);
+  }
+
+  atualizar(id: any, payload: PayloadCadastroProprietario) {
+    return this.repository.update(id, payload);
+  }
+
+  deletar(id: any) {
+    return this.repository.delete(id);
   }
 }

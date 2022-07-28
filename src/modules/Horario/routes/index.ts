@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { cadastroControllerHorario } from "../controller";
+import { controller } from "../controller";
 
 const routes = Router();
 
-routes.post("/horario/:id", cadastroControllerHorario.create());
+routes.post("/horario/:id", controller.create());
 
 export default routes;
