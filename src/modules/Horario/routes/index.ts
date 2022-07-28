@@ -3,6 +3,6 @@ import { cadastroControllerHorario } from "../controller";
 
 const routes = Router();
 
-routes.post("/cadastrohorario/:id", cadastroControllerHorario.create());
+routes.post("/horario/:id", cadastroControllerHorario.create());
 
 export default routes;

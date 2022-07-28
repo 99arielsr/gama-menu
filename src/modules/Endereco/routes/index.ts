@@ -3,6 +3,6 @@ import { cadastroControllerEndereco } from "../controller";
 
 const routes = Router();
 
-routes.post("/cadastroendereco/:id",  cadastroControllerEndereco.create());
+routes.post("/endereco/:id",  cadastroControllerEndereco.create());
 
 export default routes;
