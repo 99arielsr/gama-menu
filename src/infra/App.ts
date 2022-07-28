@@ -15,14 +15,14 @@ export default class App {
   constructor() {
     this.instance = Express();
   }
-
+  
   async setup(options: SetupOptions): Promise<void> {
+    this.instance.use(cors);
     this.instance.use(Express.static("uploads"));
     await mongoDBConection.createConection();
     const selectedPort = options.port ? options.port : this.defaultPort;
     this.instance.use(Express.json());
     this.instance.use(BaseRoutes);
-    this.instance.use(cors);
 
     if (options.isTest) return;
 
