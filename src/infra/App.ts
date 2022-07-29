@@ -3,6 +3,7 @@ import { mongoDBConection } from "../database";
 import path from "path";
 import BaseRoutes from "./BaseRoutes/index";
 import { cloudinaryConnection } from "../cloud";
+import cors from "cors"
 
 type SetupOptions = {
   isTest?: boolean;
@@ -15,8 +16,9 @@ export default class App {
   constructor() {
     this.instance = Express();
   }
-
+  
   async setup(options: SetupOptions): Promise<void> {
+    this.instance.use(cors());
     this.instance.use(Express.static("uploads"));
     await mongoDBConection.createConection();
     cloudinaryConnection.createConection();
@@ -35,3 +37,7 @@ export default class App {
     return this.instance;
   }
 }
+function cors(): any {
+  throw new Error("Function not implemented.");
+}
+

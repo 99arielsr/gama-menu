@@ -8,7 +8,8 @@ import { criptografia } from "../../infra/adapters/criptografia";
 import logger from "../../infra/logger";
 const controller = {
   async login(req: Request, res: Response) {
-    const { email, senha } = req.body;
+    try {
+      const { email, senha } = req.body;
 
     const targetUser = await Proprietario.findOne({
       select: {
@@ -26,7 +27,7 @@ const controller = {
 
     const token = jwt.sign(
       {
-        _id: targetUser.id,
+        id: targetUser.id,
         email: targetUser.email,
         nome: targetUser.nome,
       },
@@ -34,6 +35,10 @@ const controller = {
     );
 
     return res.json(token);
+    } catch (error) {
+      return res.status(500).json("ERRO");
+    }
+    
   },
 
   async gerarTokenDeSenha(req: Request, res: Response) {
