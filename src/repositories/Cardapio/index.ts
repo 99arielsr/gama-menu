@@ -35,7 +35,7 @@ export default class CardapioRepository implements IRepository {
     await this.cardapioModel.findByIdAndUpdate({ _id: id }, payload);
   }
 
-  async delete(id: any) {
+  async deleteOne(id: any) {
     return await this.cardapioModel.deleteOne({ _id: id });
   }
 }

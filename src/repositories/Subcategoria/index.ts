@@ -33,7 +33,7 @@ export default class SubcategoriaRepository implements IRepository {
     await this.subcategoriaModel.findByIdAndUpdate({ _id: id }, payload);
   }
 
-  async delete(id: any) {
+  async deleteOne(id: any) {
     return await this.subcategoriaModel.deleteOne({ _id: id });
   }
 }

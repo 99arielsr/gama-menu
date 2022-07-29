@@ -36,6 +36,6 @@ export default class HorarioUseCase {
   }
 
   deletar(id: any) {
-    return this.repository.delete(id);
+    return this.repository.deleteOne(id);
   }
 }

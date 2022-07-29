@@ -38,6 +38,6 @@ export default class EstabelecimentoUseCase {
   }
 
   deletar(id: any) {
-    return this.repository.delete(id);
+    return this.repository.deleteOne(id);
   }
 }

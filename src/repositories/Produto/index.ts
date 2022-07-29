@@ -37,7 +37,7 @@ export default class ProdutoRepository implements IRepository {
     await this.produtoModel.findByIdAndUpdate({ _id: id }, payload);
   }
 
-  async delete(id: any) {
+  async deleteOne(id: any) {
     return await this.produtoModel.deleteOne({ _id: id });
   }
 }

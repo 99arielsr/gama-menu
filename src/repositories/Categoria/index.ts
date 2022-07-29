@@ -33,7 +33,7 @@ export default class CategoriaRepository implements IRepository {
     await this.categoriaModel.findByIdAndUpdate({ _id: id }, payload);
   }
 
-  async delete(id: any) {
+  async deleteOne(id: any) {
     return await this.categoriaModel.deleteOne({ _id: id });
   }
 }

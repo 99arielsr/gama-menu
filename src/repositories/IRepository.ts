@@ -3,5 +3,5 @@ export default interface IRepository {
   find(payload?: any): Promise<any>;
   findOne(id: any): Promise<any>;
   update(id: any, payload: any): Promise<any>;
-  delete(id: any): Promise<any>;
+  deleteOne(id: any): Promise<any>;
 }
