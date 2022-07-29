@@ -2,6 +2,7 @@ import Express, { Application } from "express";
 import { mongoDBConection } from "../database";
 import path from "path";
 import BaseRoutes from "./BaseRoutes/index";
+import { cloudinaryConnection } from "../cloud";
 
 type SetupOptions = {
   isTest?: boolean;
@@ -18,6 +19,7 @@ export default class App {
   async setup(options: SetupOptions): Promise<void> {
     this.instance.use(Express.static("uploads"));
     await mongoDBConection.createConection();
+    cloudinaryConnection.createConection();
     const selectedPort = options.port ? options.port : this.defaultPort;
     this.instance.use(Express.json());
     this.instance.use(BaseRoutes);

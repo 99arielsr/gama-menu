@@ -30,7 +30,7 @@ export default class CategoriaRepository implements IRepository {
       subcategoria: Schema.Types.ObjectId[] | ISubcategorias[];
     }
   ) {
-    await this.categoriaModel.findById({ _id: id }, payload);
+    await this.categoriaModel.findByIdAndUpdate({ _id: id }, payload);
   }
 
   async delete(id: any) {
