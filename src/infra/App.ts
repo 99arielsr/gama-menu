@@ -3,7 +3,8 @@ import { mongoDBConection } from "../database";
 import path from "path";
 import BaseRoutes from "./BaseRoutes/index";
 import { cloudinaryConnection } from "../cloud";
-import cors from "cors"
+import cors from "cors";
+
 
 type SetupOptions = {
   isTest?: boolean;
@@ -25,19 +26,16 @@ export default class App {
     const selectedPort = options.port ? options.port : this.defaultPort;
     this.instance.use(Express.json());
     this.instance.use(BaseRoutes);
-
+    
     if (options.isTest) return;
-
+    
     this.instance.listen(selectedPort, () =>
-      console.log(`Servidor rodando na porta: ${selectedPort}`)
+    console.log(`Servidor rodando na porta: ${selectedPort}`)
     );
   }
-
+  
   getInstance() {
     return this.instance;
   }
-}
-function cors(): any {
-  throw new Error("Function not implemented.");
 }
 
