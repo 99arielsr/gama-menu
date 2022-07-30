@@ -1,6 +1,7 @@
 import { request, Request, Response } from "express";
 import ProprietarioUseCase from "../useCases/ProprietarioUseCase";
 import Proprietario from "../../../models/Proprietario";
+import BadRequest from "../../../infra/erros/BadRequest";
 
 export default class ProprietarioController {
   private useCase: ProprietarioUseCase;
@@ -13,22 +14,17 @@ export default class ProprietarioController {
     return async (req: Request, res: Response) => {
       try {
         const { nome, email, senha } = req.body;
-
-        const savedProprietario = await Proprietario.count({
-          email,
-        });
-
-        if (savedProprietario) {
-          return res.status(400).json("Email já cadastrado no banco.");
-        }
-
         const proprietario = await this.useCase.criar({
-          ...req.body,
+          nome,
+          email,
+          senha,
         });
 
         return res.status(201).json(proprietario);
       } catch (error) {
-        console.log(error);
+        if (error instanceof BadRequest) {
+          return res.status(error.statusCode).json(error.message);
+        }
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -40,7 +36,6 @@ export default class ProprietarioController {
         const listarTodos = await this.useCase.listar();
         return res.status(200).json(listarTodos);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -50,14 +45,12 @@ export default class ProprietarioController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
-
         const listarProprietario = await this.useCase.listarId(id);
         return res.status(200).json(listarProprietario);
       } catch (error) {
+        if (error instanceof BadRequest) {
+          return res.status(error.statusCode).json(error.message);
+        }
         return res.status(500).json("Ocorreu algum erro, contate o suprote!");
       }
     };
@@ -67,34 +60,28 @@ export default class ProprietarioController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
-
         const { nome, email, senha } = req.body;
-        const atualizado = await this.useCase.atualizar(id, {...req.body});
+        const atualizado = await this.useCase.atualizar(id, { ...req.body });
         return res.status(200).json(atualizado);
       } catch (error) {
-        console.log(error);
+        if(error instanceof BadRequest){
+          return res.status(error.statusCode).json(error.message);
+        }
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
   }
 
   delete() {
-   return async (req: Request, res: Response) => {
+    return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
-
         await this.useCase.deletar(id);
         return res.status(204).json("Proprietario deletado");
       } catch (error) {
-        console.log(error);
+        if(error instanceof BadRequest){
+          return res.status(error.statusCode).json(error.message);
+        }
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };

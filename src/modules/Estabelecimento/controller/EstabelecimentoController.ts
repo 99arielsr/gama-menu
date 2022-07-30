@@ -27,8 +27,6 @@ export default class EstabelecimentoController {
           logo,
         } = req.body;
 
-      
-
         const estabelecimento = await this.useCase.criar(id,{
           nome,
           segmento,
