@@ -1,5 +1,5 @@
 import { ObjectId } from "mongoose";
-import BadRequest from "../../../infra/erros/badRequest";
+import BadRequest from "../../../infra/erros/BadRequest";
 import { IEstabelecimento } from "../../../models/Estabelecimento";
 import Proprietario from "../../../models/Proprietario";
 import IRepository from "../../../repositories/IRepository";
