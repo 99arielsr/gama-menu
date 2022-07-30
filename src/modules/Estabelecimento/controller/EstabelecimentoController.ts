@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ObjectId } from "mongoose";
+import BadRequest from "../../../infra/erros/badRequest";
 import { IEstabelecimento } from "../../../models/Estabelecimento";
 import Proprietario from "../../../models/Proprietario";
 import EstabelecimentoUseCase from "../useCases/EstabelecimentoUseCase";
@@ -26,14 +27,9 @@ export default class EstabelecimentoController {
           logo,
         } = req.body;
 
-        const proprietarioExistente = await Proprietario.count({
-          _id: id,
-        });
-        if (!proprietarioExistente) {
-          return res.status(400).json("Proprietário não encontrado");
-        }
+      
 
-        const estabelecimento = await this.useCase.criar({
+        const estabelecimento = await this.useCase.criar(id,{
           nome,
           segmento,
           ativo,
@@ -45,22 +41,13 @@ export default class EstabelecimentoController {
           logo,
         });
 
-        const proprietario = await Proprietario.findById(id);
-        let estabelecimentoExistente: IEstabelecimento[] | ObjectId[] = [];
-
-        if (proprietario) {
-          estabelecimentoExistente = proprietario.estabelecimento;
-        }
-
-        await Proprietario.findByIdAndUpdate(id, {
-          estabelecimento: [
-            ...estabelecimentoExistente, 
-            estabelecimento.nome
-          ],
-        });
 
         return res.status(201).json(estabelecimento);
       } catch (error) {
+        if(error instanceof BadRequest){
+          return res.status(error.statusCode).json(error.message);
+        }
+
         return res.status(500).json("ERRO");
       }
     };

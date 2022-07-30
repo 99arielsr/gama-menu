@@ -1,4 +1,7 @@
+import { ObjectId } from "mongoose";
+import BadRequest from "../../../infra/erros/badRequest";
 import { IEstabelecimento } from "../../../models/Estabelecimento";
+import Proprietario from "../../../models/Proprietario";
 import IRepository from "../../../repositories/IRepository";
 
 type PayloadCadastroEstabelecimento = IEstabelecimento;
@@ -8,8 +11,9 @@ export default class EstabelecimentoUseCase {
   constructor(estabelecimentoRepository: IRepository) {
     this.repository = estabelecimentoRepository;
   }
-  criar(payload: PayloadCadastroEstabelecimento) {
-    const estabelecimentoData = [
+
+  async criar(proprietarioId: string, payload: PayloadCadastroEstabelecimento) {
+    const estabelecimentoData =
       {
         nome: payload.nome,
         segmento: payload.segmento,
@@ -20,9 +24,32 @@ export default class EstabelecimentoUseCase {
         endereco: payload.endereco,
         cardapio: payload.cardapio,
         logo: payload.logo,
-      },
-    ];
-    return this.repository.create(estabelecimentoData);
+      }
+
+      const proprietario = await Proprietario.findById({
+        _id: proprietarioId,
+      });
+
+      if (!proprietario) {
+        throw new BadRequest("Proprietário não encontrado", 400);
+      }
+
+      const estabelecimento = await this.repository.create(estabelecimentoData)
+
+      let estabelecimentoExistente: IEstabelecimento[] | ObjectId[] = [];
+
+      if (proprietario) {
+        estabelecimentoExistente = proprietario.estabelecimento;
+      }
+
+      await Proprietario.findByIdAndUpdate(proprietarioId, {
+        estabelecimento: [
+          ...estabelecimentoExistente, 
+          estabelecimento._id
+        ],
+      });
+
+    return estabelecimento;
   }
 
   listar() {
