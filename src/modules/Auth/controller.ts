@@ -11,11 +11,7 @@ const controller = {
     try {
       const { email, senha } = req.body;
 
-      const targetUser = await Proprietario.findOne({
-        select: {
-          email,
-        },
-      });
+      const targetUser = await Proprietario.findOne({email});
 
       if (!targetUser) {
         return res.status(400).json("Email não cadastrado!");
