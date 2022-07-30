@@ -1,10 +1,11 @@
 import IRepository from "../IRepository";
 import { IEstabelecimento } from "../../models/Estabelecimento";
 import { IProprietario } from "../../models/Proprietario";
-import { isObjectIdOrHexString, Model } from "mongoose";
+import { Model } from "mongoose";
 
 export default class ProprietarioRepository implements IRepository {
   private proprietarioModel: any;
+  static proprietarioModel: any;
   constructor(proprietarioModel: Model<IProprietario>) {
     this.proprietarioModel = proprietarioModel;
   }

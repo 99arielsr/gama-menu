@@ -16,8 +16,7 @@ export default class ProprietarioUseCase {
   }
   criar(payload: PayloadCadastroProprietario){
     const novaSenha = criptografia.hashSync(payload.senha);
-    const novoProprietario = this.repository.create({...payload, senha: novaSenha});
-    return novoProprietario;
+    return this.repository.create({...payload, senha: novaSenha});
   }
 
   listar() {

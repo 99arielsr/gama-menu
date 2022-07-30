@@ -85,8 +85,8 @@ export default class EstabelecimentoController {
           return res.status(404).json("Envie um Id válido!");
         }
 
-        const listarEstabelecimento = await this.useCase.listarId(id);
-        return res.status(200).json(listarEstabelecimento);
+        const listarUm = await this.useCase.listarId(id);
+        return res.status(200).json(listarUm);
       } catch (error) {
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
