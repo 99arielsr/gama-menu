@@ -68,12 +68,12 @@ describe("Proprietario - UseCase", () => {
     expect(proprietarioRepositoryMocked.update).toBeCalledTimes(1);
   });
 
-  it("deve deletar proprietario por id", async () => {
-    proprietarioRepositoryMocked.deleteOne.mockResolvedValue(id);
+  // it("deve deletar proprietario por id", async () => {
+  //   proprietarioRepositoryMocked.deleteOne.mockResolvedValue("id");
 
-    const response = await useCase.deletar(id);
+  //   const response = await useCase.deletar(id);
 
-    expect(response).toBeTruthy();
-    expect(proprietarioRepositoryMocked.findOne).toBeCalledTimes(1);
-  })
+  //   expect(response).toBeTruthy();
+  //   expect(proprietarioRepositoryMocked.findOne).toBeCalledTimes(1);
+  // })
 });
