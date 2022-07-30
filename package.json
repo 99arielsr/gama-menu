@@ -4,7 +4,7 @@
   "description": "Api desenvolvida para projeto final do Gama Experience #42",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --testTimeout 20000",
     "build": "tsc",
     "start": "node -r dotenv/config dist",
     "dev": "ts-node-dev --respawn --ignore-watch node_modules -r dotenv/config src/index.ts dotenv_config_path=.env.dev --files"
