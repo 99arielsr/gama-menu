@@ -111,7 +111,7 @@ export default class EstabelecimentoController {
         }
 
         await this.useCase.deletar(id);
-        return res.status(204);
+        return res.status(204).json("Estabelecimento deletado");
       } catch (error) {
         console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");

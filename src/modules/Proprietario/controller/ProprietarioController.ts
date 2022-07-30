@@ -83,7 +83,7 @@ export default class ProprietarioController {
   }
 
   delete() {
-    return async (req: Request, res: Response) => {
+   return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
 
@@ -92,7 +92,7 @@ export default class ProprietarioController {
         }
 
         await this.useCase.deletar(id);
-        return res.status(204);
+        return res.status(204).json("Proprietario deletado");
       } catch (error) {
         console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
