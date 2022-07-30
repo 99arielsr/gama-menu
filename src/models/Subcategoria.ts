@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
-import { IProdutos } from "./Produto";
+import { IProduto } from "./Produto";
 
 export interface ISubcategorias {
   nome: string;
-  produtos: Schema.Types.ObjectId[] | IProdutos[];
+  produtos: Schema.Types.ObjectId[] | IProduto[];
 }
 
 const subcatecoriaSchema = new Schema<ISubcategorias>(

@@ -40,7 +40,7 @@ export default class CadastroController {
         }
 
         await Categoria.findByIdAndUpdate(id, {
-          categorias: [
+          subcategorias: [
             ...subcategoriasExistentes, 
             subcategoria._id
           ],

@@ -1,7 +1,7 @@
 import IRepository from "../../../repositories/IRepository";
-import { IProdutos } from "../../../models/Produto";
+import { IProduto } from "../../../models/Produto";
 
-type PayloadCadastroProduto = IProdutos;
+type PayloadCadastroProduto = IProduto;
 
 export default class CadastroUseCase {
   private repository: IRepository;
@@ -14,7 +14,7 @@ export default class CadastroUseCase {
       nome: payload.nome,
       descricao: payload.descricao,
       preco: payload.preco,
-      foto: payload.foto
+      imagem: payload.imagem
     }
     return this.repository.create(produtoData);
   }

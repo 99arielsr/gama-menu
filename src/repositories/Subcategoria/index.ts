@@ -1,5 +1,5 @@
 import { Model, Schema } from "mongoose";
-import { IProdutos } from "../../models/Produto";
+import { IProduto } from "../../models/Produto";
 import { ISubcategorias } from "../../models/Subcategoria";
 import IRepository from "../IRepository";
 
@@ -10,7 +10,7 @@ export default class SubcategoriaRepository implements IRepository {
   }
   async create(payload: {
     nome: string;
-    produtos: Schema.Types.ObjectId[] | IProdutos[];
+    produtos: Schema.Types.ObjectId[] | IProduto[];
   }) {
     return this.subcategoriaModel.create(payload);
   }
@@ -27,7 +27,7 @@ export default class SubcategoriaRepository implements IRepository {
     id: any,
     payload: {
       nome: string;
-      produtos: Schema.Types.ObjectId[] | IProdutos[];
+      produtos: Schema.Types.ObjectId[] | IProduto[];
     }
   ) {
     await this.subcategoriaModel.findByIdAndUpdate({ _id: id }, payload);

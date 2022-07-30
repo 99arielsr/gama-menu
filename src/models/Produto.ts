@@ -1,14 +1,14 @@
 import { Schema, model } from "mongoose";
 import { IImages } from "./Images";
 
-export interface IProdutos {
+export interface IProduto {
   nome: string;
   descricao: string;
   preco: number;
-  foto: Schema.Types.ObjectId[] | IImages[];
+  imagem: Schema.Types.ObjectId[] | IImages[];
 }
 
-const produtoSchema = new Schema<IProdutos>(
+const produtoSchema = new Schema<IProduto>(
   {
     nome: {
       type: Schema.Types.String,
@@ -19,7 +19,7 @@ const produtoSchema = new Schema<IProdutos>(
     preco: {
       type: Schema.Types.Number,
     },
-    foto: [
+    imagem: [
       {
         type: Schema.Types.ObjectId,
         ref: "Images",
@@ -29,4 +29,4 @@ const produtoSchema = new Schema<IProdutos>(
   { timestamps: true }
 );
 
-export default model<IProdutos>("Produto", produtoSchema);
+export default model<IProduto>("Produto", produtoSchema);

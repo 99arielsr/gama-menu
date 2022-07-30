@@ -50,7 +50,7 @@ export default class ImageController {
           return res.status(201).json(image);
         } else if (produto) {
           await  Produto.findByIdAndUpdate( id, {
-            foto: image.id
+            imagem: image.id
           })
           return res.status(201).json(image);
         } else {

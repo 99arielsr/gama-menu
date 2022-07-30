@@ -3,7 +3,7 @@ import { ObjectId } from "mongoose";
 import Categoria from "../../../models/Categoria";
 import ProdutoUseCase from "../useCases/ProdutoUseCase";
 import Subcategoria, { ISubcategorias } from "../../../models/Subcategoria";
-import { IProdutos } from "../../../models/Produto";
+import { IProduto } from "../../../models/Produto";
 
 export default class CadastroController {
   private useCase: ProdutoUseCase;
@@ -20,7 +20,7 @@ export default class CadastroController {
           nome,
           descricao,
           preco,
-          foto
+          imagem
         } = req.body;
 
         const subcategoriaExistente = await Subcategoria.count({
@@ -34,11 +34,11 @@ export default class CadastroController {
           nome,
           descricao,
           preco,
-          foto
+          imagem
         });
 
         const subcategoria = await Subcategoria.findById(id);
-        let produtosExistentes: IProdutos[] | ObjectId[] = [];
+        let produtosExistentes: IProduto[] | ObjectId[] = [];
 
         if (subcategoria) {
           produtosExistentes = subcategoria.produtos;

@@ -1,11 +1,11 @@
 import { Model, Schema } from "mongoose";
 import { IImages } from "../../models/Images";
-import { IProdutos } from "../../models/Produto";
+import { IProduto } from "../../models/Produto";
 import IRepository from "../IRepository";
 
 export default class ProdutoRepository implements IRepository {
   private produtoModel: any;
-  constructor(produtoModel: Model<IProdutos>) {
+  constructor(produtoModel: Model<IProduto>) {
     this.produtoModel = produtoModel;
   }
   async create(payload: {

@@ -1,13 +1,13 @@
 import { Schema, model } from "mongoose";
 import { IEndereco } from "./Endereco";
 import { IEstabelecimento } from "./Estabelecimento";
-import { IProdutos } from "./Produto";
+import { IProduto } from "./Produto";
 
 export interface IPedidos {
     cliente: Schema.Types.ObjectId //| ICliente[];
     estabelecimento: Schema.Types.ObjectId | IEstabelecimento[];
     endereco: Schema.Types.ObjectId | IEndereco;
-    produtos: Schema.Types.ObjectId[] | IProdutos[];
+    produtos: Schema.Types.ObjectId[] | IProduto[];
     delivery: boolean;
     retirada: boolean;
     status: string;
