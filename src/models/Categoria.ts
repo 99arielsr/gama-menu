@@ -1,12 +1,12 @@
 import { Schema, model } from "mongoose";
 import { ISubcategorias } from "./Subcategoria";
 
-export interface ICategorias {
+export interface ICategoria {
   nome: string;
   subcategorias: Schema.Types.ObjectId[] | ISubcategorias[];
 }
 
-const categoriaSchema = new Schema<ICategorias>(
+const categoriaSchema = new Schema<ICategoria>(
   {
     nome: {
       type: Schema.Types.String,
@@ -21,4 +21,4 @@ const categoriaSchema = new Schema<ICategorias>(
   { timestamps: true }
 );
 
-export default model<ICategorias>("Categoria", categoriaSchema);
+export default model<ICategoria>("Categoria", categoriaSchema);

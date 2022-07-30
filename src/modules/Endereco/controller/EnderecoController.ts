@@ -25,6 +25,14 @@ export default class CadastroController {
           cidade,
           estado,
         } = req.body;
+
+        const estabelecimentoExistente = await Estabelecimento.count({
+          _id: id,
+        });
+        if (!estabelecimentoExistente) {
+          return res.status(400).json("Estabelecimento não encontrado");
+        }
+
         const endereco = await this.useCase.criar({
           cep,
           logradouro,

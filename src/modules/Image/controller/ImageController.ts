@@ -40,8 +40,8 @@ export default class ImageController {
           descricao
         })
 
-        const estabelecimento = await Estabelecimento.count({ id });
-        const produto = await Produto.count({ id });
+        const estabelecimento = await Estabelecimento.findById(id);
+        const produto = await Produto.findById(id);
 
         if  (estabelecimento){
           await  Estabelecimento.findByIdAndUpdate( id, {
@@ -50,7 +50,7 @@ export default class ImageController {
           return res.status(201).json(image);
         } else if (produto) {
           await  Produto.findByIdAndUpdate( id, {
-            imagem: image.id
+            foto: image.id
           })
           return res.status(201).json(image);
         } else {

@@ -1,67 +1,59 @@
 import { Request, Response } from "express";
 import { ObjectId } from "mongoose";
-import { IEstabelecimento } from "../../../models/Estabelecimento";
-import Proprietario from "../../../models/Proprietario";
-import EstabelecimentoUseCase from "../useCases/EstabelecimentoUseCase";
+import Categoria from "../../../models/Categoria";
+import ProdutoUseCase from "../useCases/ProdutoUseCase";
+import Subcategoria, { ISubcategorias } from "../../../models/Subcategoria";
+import { IProdutos } from "../../../models/Produto";
 
-export default class EstabelecimentoController {
-  private useCase: EstabelecimentoUseCase;
+export default class CadastroController {
+  private useCase: ProdutoUseCase;
 
-  constructor(useCase: EstabelecimentoUseCase) {
+  constructor(useCase: ProdutoUseCase) {
     this.useCase = useCase;
   }
+
   create() {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
         const {
           nome,
-          segmento,
-          ativo,
-          delivery,
-          retirada,
-          horario,
-          endereco,
-          cardapio,
-          logo,
+          descricao,
+          preco,
+          foto
         } = req.body;
 
-        const proprietarioExistente = await Proprietario.count({
+        const subcategoriaExistente = await Subcategoria.count({
           _id: id,
         });
-        if (!proprietarioExistente) {
-          return res.status(400).json("Proprietário não encontrado");
+        if (!subcategoriaExistente) {
+          return res.status(400).json("Subcategoria não encontrada");
         }
-
-        const estabelecimento = await this.useCase.criar({
+        
+        const produto = await this.useCase.criar({
           nome,
-          segmento,
-          ativo,
-          delivery,
-          retirada,
-          horario,
-          endereco,
-          cardapio,
-          logo,
+          descricao,
+          preco,
+          foto
         });
 
-        const proprietario = await Proprietario.findById(id);
-        let estabelecimentoExistente: IEstabelecimento[] | ObjectId[] = [];
+        const subcategoria = await Subcategoria.findById(id);
+        let produtosExistentes: IProdutos[] | ObjectId[] = [];
 
-        if (proprietario) {
-          estabelecimentoExistente = proprietario.estabelecimento;
+        if (subcategoria) {
+          produtosExistentes = subcategoria.produtos;
         }
 
-        await Proprietario.findByIdAndUpdate(id, {
-          estabelecimento: [
-            ...estabelecimentoExistente, 
-            estabelecimento.nome
+        await Subcategoria.findByIdAndUpdate(id, {
+          produtos: [
+            ...produtosExistentes, 
+            produto._id
           ],
         });
+        return res.status(201).json(produto);
 
-        return res.status(201).json(estabelecimento);
       } catch (error) {
-        return res.status(500).json("ERRO");
+        return res.status(500).json("ERRO AO CADASTRAR ENDEREÇO");
       }
     };
   }
@@ -87,8 +79,8 @@ export default class EstabelecimentoController {
           return res.status(404).json("Envie um Id válido!");
         }
 
-        const listarEstabelecimento = await this.useCase.listarId(id);
-        return res.status(200).json(listarEstabelecimento);
+        const listarCardapio = await this.useCase.listarId(id);
+        return res.status(200).json(listarCardapio);
       } catch (error) {
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
@@ -104,7 +96,7 @@ export default class EstabelecimentoController {
           return res.status(404).json("Envie um id válido!");
         }
 
-        const { nome, email, senha } = req.body;
+        const { nome, categorias } = req.body;
         const atualizado = await this.useCase.atualizar(id, {...req.body});
         return res.status(200).json(atualizado);
       } catch (error) {

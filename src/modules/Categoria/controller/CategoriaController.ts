@@ -1,67 +1,54 @@
 import { Request, Response } from "express";
 import { ObjectId } from "mongoose";
-import { IEstabelecimento } from "../../../models/Estabelecimento";
-import Proprietario from "../../../models/Proprietario";
-import EstabelecimentoUseCase from "../useCases/EstabelecimentoUseCase";
+import { ICategoria } from "../../../models/Categoria";
+import CategoriaUseCase from "../useCases/CategoriaUseCase";
+import Cardapio from "../../../models/Cardapio";
 
-export default class EstabelecimentoController {
-  private useCase: EstabelecimentoUseCase;
+export default class CadastroController {
+  private useCase: CategoriaUseCase;
 
-  constructor(useCase: EstabelecimentoUseCase) {
+  constructor(useCase: CategoriaUseCase) {
     this.useCase = useCase;
   }
+
   create() {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
         const {
           nome,
-          segmento,
-          ativo,
-          delivery,
-          retirada,
-          horario,
-          endereco,
-          cardapio,
-          logo,
+          subcategorias,
         } = req.body;
 
-        const proprietarioExistente = await Proprietario.count({
+        const cardapioExistente = await Cardapio.count({
           _id: id,
         });
-        if (!proprietarioExistente) {
-          return res.status(400).json("Proprietário não encontrado");
+        if (!cardapioExistente) {
+          return res.status(400).json("Cardapio não encontrado");
         }
-
-        const estabelecimento = await this.useCase.criar({
+        
+        const categoria = await this.useCase.criar({
           nome,
-          segmento,
-          ativo,
-          delivery,
-          retirada,
-          horario,
-          endereco,
-          cardapio,
-          logo,
+          subcategorias,
         });
 
-        const proprietario = await Proprietario.findById(id);
-        let estabelecimentoExistente: IEstabelecimento[] | ObjectId[] = [];
+        const cardapio = await Cardapio.findById(id);
+        let categoriasExistentes: ICategoria[] | ObjectId[] = [];
 
-        if (proprietario) {
-          estabelecimentoExistente = proprietario.estabelecimento;
+        if (cardapio) {
+          categoriasExistentes = cardapio.categorias;
+          
+          await Cardapio.findByIdAndUpdate(id, {
+            categorias: [...categoriasExistentes, categoria._id],
+          });
+
+          return res.status(201).json(categoria);
+        } else {
+          return res.status(404).json("Envie um id válido!");
         }
 
-        await Proprietario.findByIdAndUpdate(id, {
-          estabelecimento: [
-            ...estabelecimentoExistente, 
-            estabelecimento.nome
-          ],
-        });
-
-        return res.status(201).json(estabelecimento);
       } catch (error) {
-        return res.status(500).json("ERRO");
+        return res.status(500).json("ERRO AO CADASTRAR ENDEREÇO");
       }
     };
   }
@@ -87,8 +74,8 @@ export default class EstabelecimentoController {
           return res.status(404).json("Envie um Id válido!");
         }
 
-        const listarEstabelecimento = await this.useCase.listarId(id);
-        return res.status(200).json(listarEstabelecimento);
+        const listarCardapio = await this.useCase.listarId(id);
+        return res.status(200).json(listarCardapio);
       } catch (error) {
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
@@ -104,7 +91,7 @@ export default class EstabelecimentoController {
           return res.status(404).json("Envie um id válido!");
         }
 
-        const { nome, email, senha } = req.body;
+        const { nome, categorias } = req.body;
         const atualizado = await this.useCase.atualizar(id, {...req.body});
         return res.status(200).json(atualizado);
       } catch (error) {

@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
-import { ICategorias } from "./Categoria";
+import { ICategoria } from "./Categoria";
 
 export interface ICardapio {
   nome: string;
-  categorias: Schema.Types.ObjectId[] | ICategorias[];
+  categorias: Schema.Types.ObjectId[] | ICategoria[];
 }
 
 const cardapioSchema = new Schema<ICardapio>(

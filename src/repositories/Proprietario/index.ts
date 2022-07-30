@@ -1,7 +1,7 @@
 import IRepository from "../IRepository";
 import { IEstabelecimento } from "../../models/Estabelecimento";
 import { IProprietario } from "../../models/Proprietario";
-import { isObjectIdOrHexString, Model } from "mongoose";
+import { Model, Schema } from "mongoose";
 
 export default class ProprietarioRepository implements IRepository {
   private proprietarioModel: any;
@@ -13,7 +13,7 @@ export default class ProprietarioRepository implements IRepository {
     email: string;
     senha: string;
     hashResetSenha: string | null;
-    estabelecimento: IEstabelecimento[];
+    estabelecimento: Schema.Types.ObjectId[] | IEstabelecimento[];
   }) {
     return this.proprietarioModel.create(payload);
   }

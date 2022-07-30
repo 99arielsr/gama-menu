@@ -4,7 +4,7 @@ import { IEstabelecimento } from "./Estabelecimento";
 import { IProdutos } from "./Produto";
 
 export interface IPedidos {
-    cliente: string; //Schema.Types.ObjectId | ICliente[];
+    cliente: Schema.Types.ObjectId //| ICliente[];
     estabelecimento: Schema.Types.ObjectId | IEstabelecimento[];
     endereco: Schema.Types.ObjectId | IEndereco;
     produtos: Schema.Types.ObjectId[] | IProdutos[];
@@ -16,7 +16,7 @@ export interface IPedidos {
 
 const pedidoSchema = new Schema <IPedidos> ({
     cliente: {
-        type: Schema.Types.String,
+        type: Schema.Types.ObjectId,
     },
     estabelecimento: [
         {

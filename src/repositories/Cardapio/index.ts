@@ -1,7 +1,6 @@
 import { Model, Schema } from "mongoose";
 import { ICardapio } from "../../models/Cardapio";
-import { ICategorias } from "../../models/Categoria";
-import { ISubcategorias } from "../../models/Subcategoria";
+import { ICategoria } from "../../models/Categoria";
 import IRepository from "../IRepository";
 
 export default class CardapioRepository implements IRepository {
@@ -10,8 +9,9 @@ export default class CardapioRepository implements IRepository {
     this.cardapioModel = estabelecimentoModel;
   }
   async create(
-    payload: { 
-      categoria: Schema.Types.ObjectId[] | ICategorias[]; 
+    payload: {
+      nome: string; 
+      categoria: Schema.Types.ObjectId[] | ICategoria[]; 
     }
   ){
     return this.cardapioModel.create(payload);
@@ -29,7 +29,7 @@ export default class CardapioRepository implements IRepository {
     id: any,
     payload: {
       nome: string;
-      subcardapio: Schema.Types.ObjectId[] | ISubcategorias[];
+      categoria: Schema.Types.ObjectId[] | ICategoria[];
     }
   ) {
     await this.cardapioModel.findByIdAndUpdate({ _id: id }, payload);

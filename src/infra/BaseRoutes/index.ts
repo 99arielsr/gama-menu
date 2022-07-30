@@ -5,6 +5,10 @@ import routesEndereco from "../../modules/Endereco/routes";
 import routesHorario from "../../modules/Horario/routes";
 import routesImage from "../../modules/Image/routes";
 import routesLogin from "../../modules/Auth/routes";
+import routesCardapio from "../../modules/Cardapio/routes";
+import routesCategoria from "../../modules/Categoria/routes";
+import routesSubcategoria from "../../modules/Subcategoria/routes";
+import routesProduto from "../../modules/Produto/routes";
 
 const routes = Router();
 
@@ -14,5 +18,9 @@ routes.use(routesEndereco);
 routes.use(routesHorario);
 routes.use(routesLogin);
 routes.use(routesImage);
+routes.use(routesCardapio);
+routes.use(routesCategoria);
+routes.use(routesSubcategoria);
+routes.use(routesProduto);
 
 export default routes;
