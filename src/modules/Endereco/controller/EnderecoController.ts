@@ -26,14 +26,9 @@ export default class CadastroController {
           estado,
         } = req.body;
 
-        const estabelecimentoExistente = await Estabelecimento.count({
-          _id: id,
-        });
-        if (!estabelecimentoExistente) {
-          return res.status(400).json("Estabelecimento não encontrado");
-        }
+       
 
-        const endereco = await this.useCase.criar({
+        const endereco = await this.useCase.criar(id,{
           cep,
           logradouro,
           numero,
@@ -44,16 +39,8 @@ export default class CadastroController {
           estado,
         });
 
-        let estabelecimento = await Estabelecimento.findById(id);
-        let enderecoExistente: IEndereco[] | ObjectId[] = [];
-
-        if (endereco) {
-          estabelecimento;
-        }
-
-        await Estabelecimento.findByIdAndUpdate(id, {
-          endereco: [...enderecoExistente, endereco._id],
-        });
+       /* let estabelecimento = await Estabelecimento.findById(id); */
+        
 
         return res.status(201).json(endereco);
       } catch (error) {
@@ -68,7 +55,6 @@ export default class CadastroController {
         const listarTodos = await this.useCase.listar();
         return res.status(200).json(listarTodos);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -78,10 +64,6 @@ export default class CadastroController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-
-        if(!id) {
-          return res.status(404).json("Envie um Id válido!");
-        }
 
         const listarEstabelecimento = await this.useCase.listarId(id);
         return res.status(200).json(listarEstabelecimento);
@@ -95,16 +77,11 @@ export default class CadastroController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
 
         const { nome, email, senha } = req.body;
         const atualizado = await this.useCase.atualizar(id, {...req.body});
         return res.status(200).json(atualizado);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -115,14 +92,9 @@ export default class CadastroController {
       try {
         const { id } = req.params;
 
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
-
         await this.useCase.deletar(id);
         return res.status(204).json("Endeço deletado");
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
