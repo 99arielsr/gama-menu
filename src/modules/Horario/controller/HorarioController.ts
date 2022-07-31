@@ -27,14 +27,9 @@ export default class HorarioController {
           sabado 
         } = req.body;
 
-        const estabelecimentoExistente = await Estabelecimento.count({
-          _id: id,
-        });
-        if (estabelecimentoExistente == 0) {
-          return res.status(400).json("Estabelecimento não encontrado");
-        }
+        
 
-        const horario = await this.useCase.criar({
+        const horario = await this.useCase.criar(id, {
           hora_abre,
           hora_fecha,
           domingo,
@@ -46,19 +41,7 @@ export default class HorarioController {
           sabado,
         })
 
-        const estabelecimento = await Estabelecimento.findById(id);
-        let horarioExistente: IHorario[] | ObjectId[] = []
         
-        if  (estabelecimento){
-          horarioExistente = estabelecimento.horario;
-        }
-
-        await  Estabelecimento.findByIdAndUpdate( id, {
-          horario: [
-            ...horarioExistente,
-            horario.id
-          ]
-        })
         return res.status(201).json(horario);
         
       } catch (error) {
@@ -66,13 +49,13 @@ export default class HorarioController {
       }
     };
   }
+
   find() {
     return async (req: Request, res: Response) => {
       try {
         const listarTodos = await this.useCase.listar();
         return res.status(200).json(listarTodos);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -82,10 +65,6 @@ export default class HorarioController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-
-        if(!id) {
-          return res.status(404).json("Envie um Id válido!");
-        }
 
         const listarUm = await this.useCase.listarId(id);
         return res.status(200).json(listarUm);
@@ -100,15 +79,11 @@ export default class HorarioController {
       try {
         const { id } = req.params;
         
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
-
+      
         const { nome, email, senha } = req.body;
         const atualizado = await this.useCase.atualizar(id, {...req.body});
         return res.status(200).json(atualizado);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -119,14 +94,12 @@ export default class HorarioController {
       try {
         const { id } = req.params;
 
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
+        
 
         await this.useCase.deletar(id);
         return res.status(204).json("Horario deletado");
       } catch (error) {
-        console.log(error);
+
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
