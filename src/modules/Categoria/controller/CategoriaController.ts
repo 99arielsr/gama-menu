@@ -3,6 +3,7 @@ import { ObjectId } from "mongoose";
 import { ICategoria } from "../../../models/Categoria";
 import CategoriaUseCase from "../useCases/CategoriaUseCase";
 import Cardapio from "../../../models/Cardapio";
+import BadRequest from "../../../infra/erros/BadRequest";
 
 export default class CadastroController {
   private useCase: CategoriaUseCase;
@@ -15,40 +16,20 @@ export default class CadastroController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        const {
-          nome,
-          subcategorias,
-        } = req.body;
-
-        const cardapioExistente = await Cardapio.count({
-          _id: id,
-        });
-        if (!cardapioExistente) {
-          return res.status(400).json("Cardapio não encontrado");
-        }
-        
-        const categoria = await this.useCase.criar({
-          nome,
-          subcategorias,
-        });
-
+        const { nome, subcategorias } = req.body;
         const cardapio = await Cardapio.findById(id);
-        let categoriasExistentes: ICategoria[] | ObjectId[] = [];
 
-        if (cardapio) {
-          categoriasExistentes = cardapio.categorias;
-          
-          await Cardapio.findByIdAndUpdate(id, {
-            categorias: [...categoriasExistentes, categoria._id],
-          });
+        const categoria = await this.useCase.criar(id, {
+          nome,
+          subcategorias,
+        });
 
-          return res.status(201).json(categoria);
-        } else {
-          return res.status(404).json("Envie um id válido!");
-        }
-
+        return res.status(201).json(categoria);
       } catch (error) {
-        return res.status(500).json("ERRO AO CADASTRAR ENDEREÇO");
+        if (error instanceof BadRequest) {
+          return res.status(error.statusCode).json(error.message);
+        }
+        return res.status(500).json("Ocorreu algum erro, contate o suporte");
       }
     };
   }
@@ -59,7 +40,6 @@ export default class CadastroController {
         const listarTodos = await this.useCase.listar();
         return res.status(200).json(listarTodos);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -69,33 +49,28 @@ export default class CadastroController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-
-        if(!id) {
-          return res.status(404).json("Envie um Id válido!");
-        }
-
         const listarCardapio = await this.useCase.listarId(id);
         return res.status(200).json(listarCardapio);
       } catch (error) {
+        if (error instanceof BadRequest) {
+          return res.status(error.statusCode).json(error.message);
+        }
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
-    }
+    };
   }
 
   update() {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
-
         const { nome, categorias } = req.body;
-        const atualizado = await this.useCase.atualizar(id, {...req.body});
+        const atualizado = await this.useCase.atualizar(id, { ...req.body });
         return res.status(200).json(atualizado);
       } catch (error) {
-        console.log(error);
+        if (error instanceof BadRequest) {
+          return res.status(error.statusCode).json(error.message);
+        }
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -105,11 +80,6 @@ export default class CadastroController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-
-        if(!id){
-          return res.status(404).json("Envie um id válido!");
-        }
-
         await this.useCase.deletar(id);
         return res.status(204).json("Categoria deletada");
       } catch (error) {

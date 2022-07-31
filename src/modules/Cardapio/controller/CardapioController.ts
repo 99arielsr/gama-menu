@@ -40,7 +40,6 @@ export default class CadastroController {
         const listarTodos = await this.useCase.listar();
         return res.status(200).json(listarTodos);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -72,7 +71,6 @@ export default class CadastroController {
         if (error instanceof BadRequest) {
           return res.status(error.statusCode).json(error.message);
         }
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
