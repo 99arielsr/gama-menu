@@ -45,7 +45,6 @@ export default class EstabelecimentoController {
         if(error instanceof BadRequest){
           return res.status(error.statusCode).json(error.message);
         }
-
         return res.status(500).json("ERRO");
       }
     };

@@ -1,0 +1,5 @@
+{
+  "thunder-client.showActivityFromCollection": true,
+  "thunder-client.saveToWorkspace": false,
+  "thunder-client.saveRequestOnSend": false
+}
