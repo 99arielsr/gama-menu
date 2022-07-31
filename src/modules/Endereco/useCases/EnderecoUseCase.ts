@@ -78,3 +78,4 @@ export default class CadastroUseCase {
     }
     return deletado
   }
+}
