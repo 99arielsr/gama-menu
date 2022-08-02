@@ -3,10 +3,10 @@ import { controller } from "../controller";
 
 const routes = Router();
 
-routes.post("/proprietario", controller.create());
-routes.get("/proprietario", controller.find());
-routes.get("/proprietario/:id", controller.findOne());
-routes.put("/proprietario/:id", controller.update());
-routes.delete("/proprietario/:id", controller.delete());
+routes.post("/proprietarios", controller.create());
+routes.get("/proprietarios", controller.find());
+routes.get("/proprietarios/:id", controller.findOne());
+routes.put("/proprietarios/:id", controller.update());
+routes.delete("/proprietarios/:id", controller.delete());
 
 export default routes;

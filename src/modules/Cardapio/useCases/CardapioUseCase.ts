@@ -6,10 +6,10 @@ import { ObjectId } from "mongoose";
 
 type PayloadCadastroCardapio = ICardapio;
 
-export default class CadastroUseCase {
+export default class CardapioUseCase {
   private repository: IRepository;
-  constructor(cadastroRepository: IRepository) {
-    this.repository = cadastroRepository;
+  constructor(cardapioRepository: IRepository) {
+    this.repository = cardapioRepository;
   }
 
   async criar(estabelecimentoId: string, payload: PayloadCadastroCardapio) {
@@ -40,32 +40,27 @@ export default class CadastroUseCase {
   }
 
   async listar() {
-    const lista = await this.repository.find();
-    return lista;
+    return this.repository.find();
   }
 
   async listarId(id: any) {
-    const listado = await this.repository.findOne({ _id: id });
     if (!id) {
       throw new BadRequest("id inválido!", 400);
     }
-    return listado;
+    return this.repository.findOne({ _id: id });
   }
 
   async atualizar(id: any, payload: PayloadCadastroCardapio) {
-    const atualizado = await this.repository.update(id, payload);
-
     if (!id) {
       throw new BadRequest("id inválido!", 400);
     }
-    return atualizado;
+    return this.repository.update(id, payload);
   }
 
   async deletar(id: any) {
-    const deletado = await this.repository.deleteOne(id);
     if (!id) {
       throw new BadRequest("id inválido!", 400);
     }
-    return deletado;
+    return this.repository.deleteOne(id);
   }
 }

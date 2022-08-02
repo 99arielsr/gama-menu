@@ -1,6 +1,6 @@
-import { cadastroUseCaseEndereco } from "../useCases";
-import CadastroController from "./EnderecoController";
+import { enderecoUseCase } from "../useCases";
+import EnderecoController from "./EnderecoController";
 
-const controllerEndereco = new CadastroController(cadastroUseCaseEndereco);
+const controller = new EnderecoController(enderecoUseCase);
 
-export { controllerEndereco }
+export { controller }

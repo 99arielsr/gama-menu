@@ -36,10 +36,10 @@ export default class ProprietarioRepository implements IRepository {
       senha: string;
     }
   ) {
-    await this.proprietarioModel.findByIdAndUpdate({ _id: id }, payload);
+    await this.proprietarioModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {
-    await this.proprietarioModel.findByIdAndDelete(id);
+    await this.proprietarioModel.findByIdAndDelete({_id: id});
   }
 }

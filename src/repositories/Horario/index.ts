@@ -43,10 +43,10 @@ export default class HorarioRepository implements IRepository {
       sabado: boolean;
     }
   ) {
-    await this.horarioModel.findByIdAndUpdate({ _id: id }, payload);
+    await this.horarioModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {
-    return await this.horarioModel.deleteOne({ _id: id });
+    return await this.horarioModel.findByIdAndDelete({_id: id});
   }
 }

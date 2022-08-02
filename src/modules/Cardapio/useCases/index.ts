@@ -1,6 +1,6 @@
 import { cardapioRepository }  from "../../../repositories";
-import CadastroUseCase from "./CardapioUseCase";
+import CardapioUseCase from "./CardapioUseCase";
 
-const cadastroUseCaseCardapio= new CadastroUseCase(cardapioRepository);
+const cardapioUseCase= new CardapioUseCase(cardapioRepository);
 
-export { cadastroUseCaseCardapio };
+export { cardapioUseCase };

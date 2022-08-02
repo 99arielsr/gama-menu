@@ -27,10 +27,10 @@ export default class ImageRepository implements IRepository {
       descricao: string;
     }
   ) {
-    await this.imageModel.findByIdAndUpdate({ _id: id }, payload);
+    await this.imageModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {
-    return await this.imageModel.deleteOne({ _id: id });
+    return await this.imageModel.findByIdAndDelete({_id: id});
   }
 }

@@ -34,10 +34,10 @@ export default class ProdutoRepository implements IRepository {
       imagem: Schema.Types.ObjectId[] | IImages[];
     }
   ) {
-    await this.produtoModel.findByIdAndUpdate({ _id: id }, payload);
+    await this.produtoModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {
-    return await this.produtoModel.deleteOne({ _id: id });
+    return await this.produtoModel.findByIdAndDelete({_id: id});
   }
 }

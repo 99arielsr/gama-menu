@@ -1,6 +1,6 @@
 import { enderecoRepository }  from "../../../repositories";
-import CadastroUseCase from "./EnderecoUseCase";
+import EnderecoUseCase from "./EnderecoUseCase";
 
-const cadastroUseCaseEndereco= new CadastroUseCase(enderecoRepository);
+const enderecoUseCase = new EnderecoUseCase(enderecoRepository);
 
-export { cadastroUseCaseEndereco };
+export { enderecoUseCase };

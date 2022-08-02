@@ -1,6 +1,6 @@
-import { cadastroUseCaseProduto } from "../useCases";
-import CadastroController from "./ProdutoController";
+import { produtoUseCase } from "../useCases";
+import ProdutoController from "./ProdutoController";
 
-const controllerProduto = new CadastroController(cadastroUseCaseProduto);
+const controller = new ProdutoController(produtoUseCase);
 
-export { controllerProduto }
+export { controller }

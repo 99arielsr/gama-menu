@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { ObjectId } from "mongoose";
 import BadRequest from "../../../infra/erros/BadRequest";
 import EstabelecimentoUseCase from "../useCases/EstabelecimentoUseCase";
 
@@ -26,17 +25,16 @@ export default class EstabelecimentoController {
           logo,
         } = req.body;
 
-        const estabelecimento = await this.useCase.criar(id,{
+        const estabelecimentos = await this.useCase.criar(id,{
           ...req.body
         });
 
-
-        return res.status(201).json(estabelecimento);
+        return res.status(201).json(estabelecimentos);
       } catch (error) {
         if(error instanceof BadRequest){
           return res.status(error.statusCode).json(error.message);
         }
-        return res.status(500).json("ERRO");
+        return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
   }
@@ -44,10 +42,9 @@ export default class EstabelecimentoController {
   find() {
     return async (req: Request, res: Response) => {
       try {
-        const listarTodos = await this.useCase.listar();
-        return res.status(200).json(listarTodos);
+        const estabelecimentos = await this.useCase.listar();
+        return res.status(200).json(estabelecimentos);
       } catch (error) {
-        console.log(error);
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };
@@ -57,8 +54,8 @@ export default class EstabelecimentoController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        const listarUm = await this.useCase.listarId(id);
-        return res.status(200).json(listarUm);
+        const estabelecimentosId = await this.useCase.listarId(id);
+        return res.status(200).json(estabelecimentosId);
       } catch (error) {
         if (error instanceof BadRequest) {
           return res.status(error.statusCode).json(error.message);
@@ -83,8 +80,8 @@ export default class EstabelecimentoController {
           cardapio,
           logo, 
         } = req.body;
-        const atualizado = await this.useCase.atualizar(id, {...req.body});
-        return res.status(200).json(atualizado);
+        const estabelecimentos = await this.useCase.atualizar(id, {...req.body});
+        return res.status(200).json(estabelecimentos);
       } catch (error) {
         if(error instanceof BadRequest){
           return res.status(error.statusCode).json(error.message);
@@ -99,7 +96,7 @@ export default class EstabelecimentoController {
       try {
         const { id } = req.params;
         await this.useCase.deletar(id);
-        return res.status(204).json("Estabelecimento deletado");
+        return res.status(204).json();
       } catch (error) {
         if(error instanceof BadRequest){
           return res.status(error.statusCode).json(error.message);

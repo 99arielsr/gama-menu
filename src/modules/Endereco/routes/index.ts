@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { controllerEndereco } from "../controller";
+import { controller } from "../controller";
 
 const routes = Router();
 
-routes.post("/endereco/:id",  controllerEndereco.create());
-routes.get("/endereco/:id",  controllerEndereco.find());
-routes.get("/endereco/:id",  controllerEndereco.findOne());
-routes.put("/endereco/:id",  controllerEndereco.update());
-routes.delete("/endereco/:id",  controllerEndereco.delete());
+routes.post("/enderecos/:id",  controller.create());
+routes.get("/enderecos/:id",  controller.find());
+routes.get("/enderecos/:id",  controller.findOne());
+routes.put("/enderecos/:id",  controller.update());
+routes.delete("/enderecos/:id",  controller.delete());
 
 export default routes;

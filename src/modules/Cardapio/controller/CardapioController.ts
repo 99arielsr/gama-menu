@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import { ObjectId } from "mongoose";
-import { ICardapio } from "../../../models/Cardapio";
 import CardapioUseCase from "../useCases/CardapioUseCase";
 import Estabelecimento from "../../../models/Estabelecimento";
 import BadRequest from "../../../infra/erros/BadRequest";
 
-export default class CadastroController {
+export default class CardapioController {
   private useCase: CardapioUseCase;
 
   constructor(useCase: CardapioUseCase) {
@@ -20,8 +18,7 @@ export default class CadastroController {
         const estabelecimento = await Estabelecimento.findById(id);
 
         const cardapio = await this.useCase.criar(id, {
-          nome,
-          categorias,
+          ...req.body
         });
 
         return res.status(201).json(cardapio);
@@ -37,8 +34,8 @@ export default class CadastroController {
   find() {
     return async (req: Request, res: Response) => {
       try {
-        const listarTodos = await this.useCase.listar();
-        return res.status(200).json(listarTodos);
+        const cardapios = await this.useCase.listar();
+        return res.status(200).json(cardapios);
       } catch (error) {
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
@@ -49,8 +46,8 @@ export default class CadastroController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        const listarCardapio = await this.useCase.listarId(id);
-        return res.status(200).json(listarCardapio);
+        const cardapiosId = await this.useCase.listarId(id);
+        return res.status(200).json(cardapiosId);
       } catch (error) {
         if (error instanceof BadRequest) {
           return res.status(error.statusCode).json(error.message);
@@ -65,8 +62,8 @@ export default class CadastroController {
       try {
         const { id } = req.params;
         const { nome, categorias } = req.body;
-        const atualizado = await this.useCase.atualizar(id, { ...req.body });
-        return res.status(200).json(atualizado);
+        const cardapios = await this.useCase.atualizar(id, { ...req.body });
+        return res.status(200).json(cardapios);
       } catch (error) {
         if (error instanceof BadRequest) {
           return res.status(error.statusCode).json(error.message);
@@ -81,9 +78,11 @@ export default class CadastroController {
       try {
         const { id } = req.params;
         await this.useCase.deletar(id);
-        return res.status(204).json("Cardapio deletado");
+        return res.status(204).json();
       } catch (error) {
-        console.log(error);
+        if (error instanceof BadRequest) {
+          return res.status(error.statusCode).json(error.message);
+        }
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
     };

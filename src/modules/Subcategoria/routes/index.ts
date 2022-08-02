@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { controllerSubcategoria } from "../controller";
+import { controllerSubcategorias } from "../controller";
 
 const routes = Router();
 
-routes.post("/subcategoria/:id",  controllerSubcategoria.create());
-routes.get("/subcategoria/:id",  controllerSubcategoria.find());
-routes.get("/subcategoria/:id",  controllerSubcategoria.findOne());
-routes.put("/subcategoria/:id",  controllerSubcategoria.update());
-routes.delete("/subcategoria/:id",  controllerSubcategoria.delete());
+routes.post("/subcategorias/:id",  controllerSubcategorias.create());
+routes.get("/subcategorias/:id",  controllerSubcategorias.find());
+routes.get("/subcategorias/:id",  controllerSubcategorias.findOne());
+routes.put("/subcategorias/:id",  controllerSubcategorias.update());
+routes.delete("/subcategorias/:id",  controllerSubcategorias.delete());
 
 export default routes;

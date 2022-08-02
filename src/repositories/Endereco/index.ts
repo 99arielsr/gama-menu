@@ -39,10 +39,10 @@ export default class EnderecoRepository implements IRepository {
       estado: string;
     }
   ) {
-    await this.enderecoModel.findByIdAndUpdate({ _id: id }, payload);
+    await this.enderecoModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {
-    return await this.enderecoModel.deleteOne({ _id: id });
+    return await this.enderecoModel.findByIdAndDelete({_id: id});
   }
 }

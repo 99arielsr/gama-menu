@@ -3,10 +3,10 @@ import { controller } from "../controller";
 
 const routes = Router();
 
-routes.post("/estabelecimento/:id", controller.create());
-routes.get("/estabelecimento", controller.find());
-routes.get("/estabelecimento/:id", controller.findOne());
-routes.put("/estabelecimento/:id", controller.update());
-routes.delete("/estabelecimento/:id", controller.delete());
+routes.post("/estabelecimentos/:id", controller.create());
+routes.get("/estabelecimentos", controller.find());
+routes.get("/estabelecimentos/:id", controller.findOne());
+routes.put("/estabelecimentos/:id", controller.update());
+routes.delete("/estabelecimentos/:id", controller.delete());
 
 export default routes;

@@ -47,10 +47,10 @@ export default class EstabelecimentoRepository implements IRepository {
       retirada: boolean;
     }
   ) {
-    await this.estabelecimentoModel.findByIdAndUpdate({ _id: id }, payload);
+    await this.estabelecimentoModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {
-    return await this.estabelecimentoModel.deleteOne({ _id: id });
+    return await this.estabelecimentoModel.findByIdAndDelete({_id: id});
   }
 }

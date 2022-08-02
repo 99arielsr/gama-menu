@@ -1,6 +1,6 @@
 import { categoriaRepository }  from "../../../repositories";
-import CadastroUseCase from "./CategoriaUseCase";
+import CategoriaUseCase from "./CategoriaUseCase";
 
-const cadastroUseCaseCategoria= new CadastroUseCase(categoriaRepository);
+const categoriaUseCase= new CategoriaUseCase(categoriaRepository);
 
-export { cadastroUseCaseCategoria };
+export { categoriaUseCase };

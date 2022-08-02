@@ -1,6 +1,6 @@
-import { cadastroUseCaseCardapio } from "../useCases";
-import CadastroController from "./CardapioController";
+import { cardapioUseCase } from "../useCases";
+import CardapioController from "./CardapioController";
 
-const controllerCardapio = new CadastroController(cadastroUseCaseCardapio);
+const controller = new CardapioController(cardapioUseCase);
 
-export { controllerCardapio }
+export { controller }

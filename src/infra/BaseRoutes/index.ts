@@ -9,6 +9,7 @@ import routesCardapio from "../../modules/Cardapio/routes";
 import routesCategoria from "../../modules/Categoria/routes";
 import routesSubcategoria from "../../modules/Subcategoria/routes";
 import routesProduto from "../../modules/Produto/routes";
+import routesAuth from "../../modules/Auth/routes";
 
 const routes = Router();
 
@@ -22,5 +23,6 @@ routes.use(routesCardapio);
 routes.use(routesCategoria);
 routes.use(routesSubcategoria);
 routes.use(routesProduto);
+routes.use(routesAuth);
 
 export default routes;

@@ -1,6 +1,6 @@
-import { cadastroUseCaseSubcategoria } from "../useCases";
-import CadastroController from "./SubcategoriaController";
+import { subcategoriasUseCase } from "../useCases";
+import SubcategoriasController from "./SubcategoriaController";
 
-const controllerSubcategoria = new CadastroController(cadastroUseCaseSubcategoria);
+const controllerSubcategorias = new SubcategoriasController(subcategoriasUseCase);
 
-export { controllerSubcategoria }
+export { controllerSubcategorias }

@@ -32,10 +32,10 @@ export default class CardapioRepository implements IRepository {
       categoria: Schema.Types.ObjectId[] | ICategoria[];
     }
   ) {
-    await this.cardapioModel.findByIdAndUpdate({ _id: id }, payload);
+    await this.cardapioModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {
-    return await this.cardapioModel.deleteOne({ _id: id });
+    return await this.cardapioModel.findByIdAndDelete({_id: id});
   }
 }

@@ -1,6 +1,5 @@
 import { request, Request, Response } from "express";
 import ProprietarioUseCase from "../useCases/ProprietarioUseCase";
-import Proprietario from "../../../models/Proprietario";
 import BadRequest from "../../../infra/erros/BadRequest";
 
 export default class ProprietarioController {
@@ -15,9 +14,7 @@ export default class ProprietarioController {
       try {
         const { nome, email, senha } = req.body;
         const proprietario = await this.useCase.criar({
-          nome,
-          email,
-          senha,
+          ...req.body
         });
 
         return res.status(201).json(proprietario);
@@ -33,8 +30,8 @@ export default class ProprietarioController {
   find() {
     return async (req: Request, res: Response) => {
       try {
-        const listarTodos = await this.useCase.listar();
-        return res.status(200).json(listarTodos);
+        const proprietarios = await this.useCase.listar();
+        return res.status(200).json(proprietarios);
       } catch (error) {
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
       }
@@ -45,8 +42,8 @@ export default class ProprietarioController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        const listarProprietario = await this.useCase.listarId(id);
-        return res.status(200).json(listarProprietario);
+        const proprietariosId = await this.useCase.listarId(id);
+        return res.status(200).json(proprietariosId);
       } catch (error) {
         if (error instanceof BadRequest) {
           return res.status(error.statusCode).json(error.message);
@@ -61,8 +58,8 @@ export default class ProprietarioController {
       try {
         const { id } = req.params;
         const { nome, email, senha } = req.body;
-        const atualizado = await this.useCase.atualizar(id, { ...req.body });
-        return res.status(200).json(atualizado);
+        const proprietario = await this.useCase.atualizar(id, { ...req.body });
+        return res.status(200).json(proprietario);
       } catch (error) {
         if(error instanceof BadRequest){
           return res.status(error.statusCode).json(error.message);
@@ -77,7 +74,7 @@ export default class ProprietarioController {
       try {
         const { id } = req.params;
         await this.useCase.deletar(id);
-        return res.status(204).json("Proprietario deletado");
+        return res.status(204).json();
       } catch (error) {
         if(error instanceof BadRequest){
           return res.status(error.statusCode).json(error.message);
