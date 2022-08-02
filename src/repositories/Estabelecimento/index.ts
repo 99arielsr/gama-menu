@@ -53,4 +53,6 @@ export default class EstabelecimentoRepository implements IRepository {
   async deleteOne(id: any) {
     return await this.estabelecimentoModel.findByIdAndDelete({_id: id});
   }
+
+  async count(payload:any) {}
 }

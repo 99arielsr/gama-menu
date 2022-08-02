@@ -14,6 +14,11 @@ export default class ProprietarioUseCase {
     this.repository = proprietarioRepository;
   }
   async criar(payload: PayloadCadastroProprietario) {
+
+    const emailCadastrado = await this.repository.count({email: payload.email});
+    if (emailCadastrado) {
+      throw new BadRequest("Email já cadastrado.", 400);
+    }
     const novaSenha = await criptografia.hashSync(payload.senha);
     return this.repository.create({ ...payload, senha: novaSenha });
   }

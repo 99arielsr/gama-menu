@@ -40,4 +40,6 @@ export default class ProdutoRepository implements IRepository {
   async deleteOne(id: any) {
     return await this.produtoModel.findByIdAndDelete({_id: id});
   }
+
+  async count(payload:any) {}
 }

@@ -42,4 +42,8 @@ export default class ProprietarioRepository implements IRepository {
   async deleteOne(id: any) {
     await this.proprietarioModel.findByIdAndDelete({_id: id});
   }
+
+  async count(payload: any) {
+      return await this.proprietarioModel.count(payload);
+  }
 }

@@ -49,4 +49,6 @@ export default class HorarioRepository implements IRepository {
   async deleteOne(id: any) {
     return await this.horarioModel.findByIdAndDelete({_id: id});
   }
+
+  async count(payload:any) {}
 }

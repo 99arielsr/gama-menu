@@ -36,4 +36,6 @@ export default class SubcategoriaRepository implements IRepository {
   async deleteOne(id: any) {
     return await this.subcategoriaModel.deleteOne({ _id: id });
   }
+
+  async count(payload:any) {}
 }

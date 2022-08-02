@@ -33,4 +33,6 @@ export default class ImageRepository implements IRepository {
   async deleteOne(id: any) {
     return await this.imageModel.findByIdAndDelete({_id: id});
   }
+
+  async count(payload:any) {}
 }
