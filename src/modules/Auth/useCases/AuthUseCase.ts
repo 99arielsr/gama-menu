@@ -64,10 +64,6 @@ export default class AuthUseCase {
       throw new BadRequest("token inválido.", 400);
     }
 
-    if(savedUser.hashResetSenha === payload.token) {
-      throw new BadRequest("token inválido.", 400);
-    }
-
     if (!savedUser) {
       throw new NotFound("Email não encontrado", 404);
     }

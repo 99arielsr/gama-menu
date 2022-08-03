@@ -16,7 +16,7 @@ export default class AuthController {
       try {
         const { email, senha } = req.body;
         const token = await this.useCase.login({...req.body});
-        return res.json(token);
+        return res.status(201).json(token);
       } catch (error) {
         if (error instanceof BadRequest) {
           return res.status(error.statusCode).json(error.message);
