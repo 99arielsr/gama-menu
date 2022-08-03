@@ -57,7 +57,7 @@ describe("Proprietario - UseCase", () => {
   });
 
   it("deve atualizar proprietario por id", async () => {
-    proprietarioRepositoryMocked.update.mockResolvedValue();
+    proprietarioRepositoryMocked.update.mockResolvedValue({});
     const response = await useCase.atualizar(id, {
       nome: payload.nome,
       email: payload.email,
@@ -70,11 +70,11 @@ describe("Proprietario - UseCase", () => {
   });
 
   it("deve deletar proprietario por id", async () => {
-    proprietarioRepositoryMocked.deleteOne.mockResolvedValue();
+    proprietarioRepositoryMocked.deleteOne.mockResolvedValue({});
 
     const response = await useCase.deletar(id);
 
-    expect(response).toBeUndefined();
+    expect(response).toBeTruthy();
     expect(proprietarioRepositoryMocked.deleteOne).toBeCalledTimes(1);
   })
 });

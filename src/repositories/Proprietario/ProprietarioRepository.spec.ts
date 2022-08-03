@@ -48,8 +48,8 @@ describe("Proprietario Repository", () => {
     const { id } = proprietario;
 
     const proprietarioAtualizado = await proprietarioRepository.update(id, payload);
-    // expect(proprietarioAtualizado).toBeTruthy();
-    // expect(proprietarioAtualizado).toHaveProperty("nome");
+    expect(proprietarioAtualizado).toBeTruthy();
+    expect(proprietarioAtualizado).toHaveProperty("nome");
   });
 
   it("deve deletar proprietario por id", async () => {
@@ -59,7 +59,7 @@ describe("Proprietario Repository", () => {
 
     const deletarProprietario = await proprietarioRepository.deleteOne(id);
     const proprietarioDeletado = await Proprietario.findById(id);
-    expect(deletarProprietario).toBeUndefined();
+    expect(deletarProprietario).toBeTruthy();
     expect(proprietarioDeletado).toBeNull();
   })
 });
