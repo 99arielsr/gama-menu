@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import JWT from "jsonwebtoken";
+import ENV from "../config/env";
 
 export default (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
@@ -22,7 +23,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const data = JWT.verify(token, "BOSS");
+    const data = JWT.verify(token, ENV.SECRET);
     req.user = data as User;
     return next();
   } catch (e) {

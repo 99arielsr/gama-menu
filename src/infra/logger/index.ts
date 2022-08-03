@@ -9,7 +9,12 @@ const logger = winston.createLogger({
   ),
   transports: [
     new winston.transports.File({
-      filename: path.resolve("src", "infra", "logs", "logs.log"),
+      filename: path.resolve("src", "infra", "logs", "infos.log"),
+      level: "info",
+    }),
+    new winston.transports.File({
+      filename: path.resolve("src", "infra", "logs", "erros.log"),
+      level: "error",
     }),
   ],
 });

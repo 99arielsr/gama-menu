@@ -32,10 +32,4 @@ const proprietarioSchema = new Schema <IProprietario> ({
 {timestamps: true}
 );
 
-declare namespace Express {
-  export interface Request {
-    user?: IProprietario;
-  }
-}
-
 export default model <IProprietario>("Proprietario", proprietarioSchema);

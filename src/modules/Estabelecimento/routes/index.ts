@@ -4,7 +4,7 @@ import auth from "../../../infra/middlewares/auth";
 
 const routes = Router();
 
-routes.post("/estabelecimentos/:id", controller.create());
+routes.post("/estabelecimentos/:id", auth, controller.create());
 routes.get("/estabelecimentos", controller.find());
 routes.get("/estabelecimentos/:id", controller.findOne());
 routes.put("/estabelecimentos/:id", controller.update());
