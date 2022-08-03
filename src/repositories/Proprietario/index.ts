@@ -15,7 +15,7 @@ export default class ProprietarioRepository implements IRepository {
     email: string;
     senha: string;
     hashResetSenha: string | null;
-    estabelecimento: Schema.Types.ObjectId[] | IEstabelecimento[];
+    estabelecimento?: Schema.Types.ObjectId[] | IEstabelecimento[];
   }) {
     return this.proprietarioModel.create(payload);
   }

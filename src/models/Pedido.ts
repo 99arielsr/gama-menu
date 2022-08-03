@@ -1,45 +1,29 @@
 import { Schema, model } from "mongoose";
 import { IEndereco } from "./Endereco";
-import { IEstabelecimento } from "./Estabelecimento";
 import { IProduto } from "./Produto";
 
-export interface IPedidos {
-    cliente: Schema.Types.ObjectId //| ICliente[];
-    estabelecimento: Schema.Types.ObjectId | IEstabelecimento[];
-    endereco: Schema.Types.ObjectId | IEndereco;
+export interface IPedido {
+    cliente: Schema.Types.ObjectId //| ICliente[]; ainda será implementado
+    enderecoEntrega?: Schema.Types.ObjectId[] | IEndereco[];
     produtos: Schema.Types.ObjectId[] | IProduto[];
-    delivery: boolean;
-    retirada: boolean;
+    entrega: boolean;
     status: string;
-
   }
 
-const pedidoSchema = new Schema <IPedidos> ({
+const pedidoSchema = new Schema <IPedido> ({
     cliente: {
         type: Schema.Types.ObjectId,
     },
-    estabelecimento: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "Estabelecimento",
-        },
-    ],
-    endereco: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Endereco",
-        },
-    ],
+    enderecoEntrega: {
+        type: Schema.Types.ObjectId,
+    },
     produtos: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Produtos",
+            ref: "Produto",
         },
     ],
-    delivery: {
-        type: Schema.Types.Boolean,
-    },
-    retirada: {
+    entrega: {
         type: Schema.Types.Boolean,
     },
     status: {
@@ -49,4 +33,4 @@ const pedidoSchema = new Schema <IPedidos> ({
 {timestamps: true}
 );
 
-export default model <IPedidos>("Pedidos", pedidoSchema);
+export default model <IPedido>("Pedido", pedidoSchema);

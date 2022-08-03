@@ -3,6 +3,7 @@ import { IImages } from "./Images";
 import { IEndereco } from "./Endereco";
 import { IHorario } from "./Horario";
 import { ICardapio } from "./Cardapio";
+import { IPedido } from "./Pedido";
 
 export interface IEstabelecimento {
     nome: string;
@@ -14,6 +15,7 @@ export interface IEstabelecimento {
     horario: Schema.Types.ObjectId[] | IHorario[];
     delivery: boolean;
     retirada: boolean;
+    pedidos: Schema.Types.ObjectId[] | IPedido[];
   }
 
 const estabelecimentoSchema = new Schema <IEstabelecimento> ({
@@ -55,7 +57,13 @@ const estabelecimentoSchema = new Schema <IEstabelecimento> ({
     },
     retirada: {
         type: Schema.Types.Boolean,
-    }
+    },
+    pedidos: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Pedido",
+        }
+    ]
 },
 {timestamps: true}
 );
