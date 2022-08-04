@@ -11,7 +11,7 @@ export default class CardapioRepository implements IRepository {
   async create(
     payload: {
       nome: string; 
-      categoria: Schema.Types.ObjectId[] | ICategoria[]; 
+      categorias?: Schema.Types.ObjectId[] | ICategoria[]; 
     }
   ){
     return this.cardapioModel.create(payload);
@@ -29,10 +29,10 @@ export default class CardapioRepository implements IRepository {
     id: any,
     payload: {
       nome: string;
-      categoria: Schema.Types.ObjectId[] | ICategoria[];
+      categorias?: Schema.Types.ObjectId[] | ICategoria[];
     }
   ) {
-    await this.cardapioModel.findByIdAndUpdate({_id: id}, payload);
+    return await this.cardapioModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {

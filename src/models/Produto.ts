@@ -4,7 +4,7 @@ import { IImages } from "./Images";
 export interface IProduto {
   nome: string;
   descricao: string;
-  preco: number;
+  preco: number | string;
   imagem: Schema.Types.ObjectId[] | IImages[];
 }
 

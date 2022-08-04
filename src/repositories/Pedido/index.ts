@@ -11,11 +11,11 @@ export default class PedidoRepository implements IRepository {
     this.pedidoModel = pedidoModel;
   }
   async create(payload: {
-    cliente: Schema.Types.ObjectId; //| ICliente[];
+    cliente?: Schema.Types.ObjectId; //| ICliente[];
     enderecoCliente?: Schema.Types.ObjectId | IEndereco;
-    produtos: Schema.Types.ObjectId[] | IProduto[];
-    entrega: boolean;
-    status: string;
+    produtos?: Schema.Types.ObjectId[] | IProduto[];
+    entrega?: boolean;
+    status?: string;
   }) {
     return this.pedidoModel.create(payload);
   }
@@ -38,7 +38,7 @@ export default class PedidoRepository implements IRepository {
       status?: string;
     }
   ) {
-    await this.pedidoModel.findByIdAndUpdate({ _id: id }, payload);
+    return await this.pedidoModel.findByIdAndUpdate({ _id: id }, payload);
   }
 
   async deleteOne(id: any) {

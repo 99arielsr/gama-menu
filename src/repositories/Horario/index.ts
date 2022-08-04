@@ -8,8 +8,8 @@ export default class HorarioRepository implements IRepository {
     this.horarioModel = horarioModel;
   }
   async create(payload: {
-    hora_abre: Date;
-    hora_fecha: Date;
+    horario_abertura: Date;
+    horario_fechamento: Date;
     domingo: boolean;
     segunda: boolean;
     terca: boolean;
@@ -32,8 +32,8 @@ export default class HorarioRepository implements IRepository {
   async update(
     id: any,
     payload: {
-      hora_abre: Date;
-      hora_fecha: Date;
+      horario_abertura: Date;
+      horario_fechamento: Date;
       domingo: boolean;
       segunda: boolean;
       terca: boolean;
@@ -43,7 +43,7 @@ export default class HorarioRepository implements IRepository {
       sabado: boolean;
     }
   ) {
-    await this.horarioModel.findByIdAndUpdate({_id: id}, payload);
+    return await this.horarioModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {

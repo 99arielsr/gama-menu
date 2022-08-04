@@ -14,8 +14,8 @@ export default class HorarioController {
       try {
         const { id } = req.params;
         const {
-          hora_abre,
-          hora_fecha,
+          horario_abertura,
+          horario_fechamento,
           domingo,
           segunda,
           terca,

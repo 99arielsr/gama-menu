@@ -13,8 +13,8 @@ export default class HorarioUseCase {
   }
   async criar(horarioId: string, payload: PayloadCadastroHorario) {
     const horarioData = {
-      hora_abre: payload.hora_abre,
-      hora_fecha: payload.hora_fecha,
+      hora_abre: payload.horario_abertura,
+      hora_fecha: payload.horario_fechamento,
       domingo: payload.domingo,
       segunda: payload.segunda,
       terca: payload.terca,

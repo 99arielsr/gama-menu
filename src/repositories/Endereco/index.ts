@@ -9,7 +9,7 @@ export default class EnderecoRepository implements IRepository {
   }
   async create(payload: {
     logradouro: string;
-    numero: number;
+    numero: string;
     complemento?: string;
     referencia?: string;
     bairro: string;
@@ -31,7 +31,7 @@ export default class EnderecoRepository implements IRepository {
     id: any,
     payload: {
       logradouro?: string;
-      numero?: number;
+      numero?: string;
       complemento?: string;
       referencia?: string;
       bairro?: string;
@@ -39,7 +39,7 @@ export default class EnderecoRepository implements IRepository {
       estado?: string;
     }
   ) {
-    await this.enderecoModel.findByIdAndUpdate({_id: id}, payload);
+    return await this.enderecoModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {

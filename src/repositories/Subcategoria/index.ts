@@ -10,7 +10,7 @@ export default class SubcategoriaRepository implements IRepository {
   }
   async create(payload: {
     nome: string;
-    produtos: Schema.Types.ObjectId[] | IProduto[];
+    produtos?: Schema.Types.ObjectId[] | IProduto[];
   }) {
     return this.subcategoriaModel.create(payload);
   }
@@ -27,10 +27,10 @@ export default class SubcategoriaRepository implements IRepository {
     id: any,
     payload: {
       nome: string;
-      produtos: Schema.Types.ObjectId[] | IProduto[];
+      produtos?: Schema.Types.ObjectId[] | IProduto[];
     }
   ) {
-    await this.subcategoriaModel.findByIdAndUpdate({ _id: id }, payload);
+    return await this.subcategoriaModel.findByIdAndUpdate({ _id: id }, payload);
   }
 
   async deleteOne(id: any) {

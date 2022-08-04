@@ -4,6 +4,7 @@ import { IEndereco } from "../../models/Endereco";
 import { IEstabelecimento } from "../../models/Estabelecimento";
 import { IHorario } from "../../models/Horario";
 import { IImages } from "../../models/Images";
+import { IPedido } from "../../models/Pedido";
 import IRepository from "../IRepository";
 
 export default class EstabelecimentoRepository implements IRepository {
@@ -15,12 +16,13 @@ export default class EstabelecimentoRepository implements IRepository {
     nome: string;
     segmento: string;
     logo: Schema.Types.ObjectId[] | IImages[];
-    endereco: Schema.Types.ObjectId[] | IEndereco[];
-    cardapio: Schema.Types.ObjectId[] | ICardapio[];
+    endereco?: Schema.Types.ObjectId[] | IEndereco[];
+    cardapio?: Schema.Types.ObjectId[] | ICardapio[];
     ativo: boolean;
-    horario: Schema.Types.ObjectId[] | IHorario[];
+    horario?: Schema.Types.ObjectId[] | IHorario[];
     delivery: boolean;
     retirada: boolean;
+    pedidos: Schema.Types.ObjectId | IPedido[];
   }) {
     return this.estabelecimentoModel.create(payload);
   }
@@ -39,15 +41,12 @@ export default class EstabelecimentoRepository implements IRepository {
       nome: string;
       segmento: string;
       logo: Schema.Types.ObjectId[] | IImages[];
-      endereco: Schema.Types.ObjectId[] | IEndereco[];
-      cardapio: Schema.Types.ObjectId[] | ICardapio[];
       ativo: boolean;
-      horario: Schema.Types.ObjectId[] | IHorario[];
       delivery: boolean;
       retirada: boolean;
     }
   ) {
-    await this.estabelecimentoModel.findByIdAndUpdate({_id: id}, payload);
+    return await this.estabelecimentoModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {

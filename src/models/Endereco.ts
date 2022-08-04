@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 export interface IEndereco {
   cep: string
   logradouro: string;
-  numero: number;
+  numero: string;
   complemento: string;
   referencia: string;
   bairro: string;
@@ -20,7 +20,7 @@ const enderecoSchema = new Schema<IEndereco>(
       type: Schema.Types.String,
     },
     numero: {
-      type: Schema.Types.Number,
+      type: Schema.Types.String,
     },
     complemento: {
       type: Schema.Types.String,

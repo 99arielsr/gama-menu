@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
 
 export interface IHorario {
-  hora_abre: Date;
-  hora_fecha: Date;
+  horario_abertura: Date;
+  horario_fechamento: Date;
   domingo: boolean;
   segunda: boolean;
   terca: boolean;
@@ -14,10 +14,10 @@ export interface IHorario {
 
 const horarioSchema = new Schema<IHorario>(
   {
-    hora_abre: {
+    horario_abertura: {
       type: Schema.Types.Date,
     },
-    hora_fecha: {
+    horario_fechamento: {
       type: Schema.Types.Date,
     },
     domingo: {

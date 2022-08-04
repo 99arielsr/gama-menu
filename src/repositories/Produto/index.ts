@@ -11,8 +11,8 @@ export default class ProdutoRepository implements IRepository {
   async create(payload: {
     nome: string;
     descricao: string;
-    preco: number;
-    imagem: Schema.Types.ObjectId[] | IImages[];
+    preco: number | string;
+    imagem?: Schema.Types.ObjectId[] | IImages[];
   }) {
     return this.produtoModel.create(payload);
   }
@@ -30,11 +30,11 @@ export default class ProdutoRepository implements IRepository {
     payload: {
       nome: string;
       descricao: string;
-      preco: number;
-      imagem: Schema.Types.ObjectId[] | IImages[];
+      preco: number | string;
+      imagem?: Schema.Types.ObjectId[] | IImages[];
     }
   ) {
-    await this.produtoModel.findByIdAndUpdate({_id: id}, payload);
+    return await this.produtoModel.findByIdAndUpdate({_id: id}, payload);
   }
 
   async deleteOne(id: any) {
