@@ -3,7 +3,7 @@ import { ISubcategorias } from "./Subcategoria";
 
 export interface ICategoria {
   nome: string;
-  subcategorias?: Schema.Types.ObjectId[] | ISubcategorias[];
+  subcategorias: Schema.Types.ObjectId[] | ISubcategorias[];
 }
 
 const categoriaSchema = new Schema<ICategoria>(
