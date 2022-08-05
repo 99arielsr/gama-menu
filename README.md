@@ -6,7 +6,7 @@
 # GAMA-MENU API
 
 <p>Desafio final do curso de Desenvolvimento Full Stack da Gama Academy.<br>A proposta desse projeto foi criar um portfólio navegável e interativo de um empreendimento, e assim surgiu o GAMA-MENU</p>
-<p> GAMA-MENU é plataforma de cardápio digital desenvolvida com foco em acessibilidade.</p>
+<p> GAMA-MENU é produto onde restaurantes, lanchonetes e afins podem cadastrar seus cardápios e compartilhar um link exclusivo para que os clientes façam os pedidos, mas tendo como diferencial uma ferramenta acessível, tanto para o pequeno empresário como para o usuário. </p>
 
 <table>
 <thead>
