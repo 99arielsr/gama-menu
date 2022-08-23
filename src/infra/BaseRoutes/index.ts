@@ -10,6 +10,7 @@ import routesCategoria from "../../modules/Categoria/routes";
 import routesSubcategoria from "../../modules/Subcategoria/routes";
 import routesProduto from "../../modules/Produto/routes";
 import routesAuth from "../../modules/Auth/routes";
+import routesTeste from "../../modules/Teste/routes";
 
 const routes = Router();
 
@@ -24,5 +25,6 @@ routes.use(routesCategoria);
 routes.use(routesSubcategoria);
 routes.use(routesProduto);
 routes.use(routesAuth);
+routes.use(routesTeste);
 
 export default routes;
