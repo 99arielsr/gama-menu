@@ -14,8 +14,9 @@ export default class TesteUseCase {
     this.repository = testeRepository;
   }
   async criar(payload: PayloadTeste) {
-
-    const emailCadastrado = await this.repository.count({email: payload.email});
+    const emailCadastrado = await this.repository.count({
+      email: payload.email,
+    });
     if (emailCadastrado) {
       throw new BadRequest("Email já cadastrado.", 400);
     }
@@ -31,18 +32,18 @@ export default class TesteUseCase {
     if (!id) {
       throw new BadRequest("id inválido!", 400);
     }
-    return this.repository.findOne({_id: id});
+    return this.repository.findOne({ _id: id });
   }
 
   async atualizar(id: any, payload: PayloadTeste) {
-    if(!id) {
+    if (!id) {
       throw new BadRequest("id inválido!", 400);
     }
     return this.repository.update(id, payload);
   }
 
   async deletar(id: any) {
-    if(!id) {
+    if (!id) {
       throw new BadRequest("id inválido!", 400);
     }
     return this.repository.deleteOne(id);

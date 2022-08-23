@@ -14,7 +14,7 @@ export default class TesteController {
       try {
         const { name, email, password } = req.body;
         const teste = await this.useCase.criar({
-          ...req.body
+          ...req.body,
         });
 
         return res.status(201).json(teste);
@@ -57,11 +57,11 @@ export default class TesteController {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
-        const { nome, email, senha } = req.body;
+        const { name, email, password } = req.body;
         const teste = await this.useCase.atualizar(id, { ...req.body });
         return res.status(200).json(teste);
       } catch (error) {
-        if(error instanceof BadRequest){
+        if (error instanceof BadRequest) {
           return res.status(error.statusCode).json(error.message);
         }
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
@@ -76,7 +76,7 @@ export default class TesteController {
         await this.useCase.deletar(id);
         return res.status(204).json();
       } catch (error) {
-        if(error instanceof BadRequest){
+        if (error instanceof BadRequest) {
           return res.status(error.statusCode).json(error.message);
         }
         return res.status(500).json("Ocorreu algum erro, contate o suporte!");
