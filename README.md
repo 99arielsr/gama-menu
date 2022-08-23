@@ -1,7 +1,12 @@
+<div>
+  <img src="https://user-images.githubusercontent.com/90655270/161388302-145d58d6-723a-4dc1-97e7-80133dfa4c3a.png" width="100px">
+  <img alt="Stack Hacker" src="https://img.shields.io/static/v1?label=stack&message=hacker&color=success&labelColor=grey">
+</div>
+
 # GAMA-MENU API
 
 <p>Desafio final do curso de Desenvolvimento Full Stack da Gama Academy.<br>A proposta desse projeto foi criar um portfólio navegável e interativo de um empreendimento, e assim surgiu o GAMA-MENU</p>
-<p> GAMA-MENU é plataforma de cardápio digital desenvolvida com foco em acessibilidade.</p>
+<p> GAMA-MENU é produto onde restaurantes, lanchonetes e afins podem cadastrar seus cardápios e compartilhar um link exclusivo para que os clientes façam os pedidos, mas tendo como diferencial uma ferramenta acessível, tanto para o pequeno empresário como para o usuário. </p>
 
 <table>
 <thead>
@@ -91,6 +96,8 @@ Requisições para a API devem seguir os padrões:
 
 # 🔚Endpoints:
 <a href="https://documenter.getpostman.com/view/22408887/UzXNVdXd">Documentação das requisições feitas pela API. 📝</a>
+
+<a href="https://gama-menu.herokuapp.com/">Link API</a>
 
 ## :computer: # Desenvolvedores:
 <table>
